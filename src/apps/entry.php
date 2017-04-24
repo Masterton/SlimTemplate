@@ -5,10 +5,10 @@ return [
         'prefix' => '/api',
         'urls' => require __DIR__ . '/api/urls.php'
     ],
-    /*'test' => [
-        'prefix' => '/test',
-        'urls' => require __DIR__ . '/test/urls.php'
-    ],*/
+    'view' => [
+        'prefix' => '/view',
+        'urls' => require __DIR__ . '/view/urls.php'
+    ],
     /*'db' => [
         'prefix' => '/db',
         'urls' => [
