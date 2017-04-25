@@ -9,6 +9,10 @@ return [
         'prefix' => '/view',
         'urls' => require __DIR__ . '/view/urls.php'
     ],
+    'admin' => [
+        'prefix' => '/admin',
+        'urls' => require __DIR__ . '/admin/urls.php'
+    ],
     /*'db' => [
         'prefix' => '/db',
         'urls' => [

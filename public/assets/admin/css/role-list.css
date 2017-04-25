@@ -1,0 +1,7 @@
+#role-add-modal .width-1by2 {
+    width: 50%;
+}
+#role-add-modal .red-star {
+    color: #f00;
+    vertical-align: middle;
+}

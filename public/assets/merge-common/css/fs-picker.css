@@ -1,0 +1,77 @@
+#fs-picker-modal .list-group {
+    margin-bottom: 12px;
+}
+
+#fs-picker-modal .list-group .list-group-item {
+    padding: 6px 8px;
+}
+
+#fs-picker-modal .list-group .list-group-item div[data-name] .item-text {
+    padding-left: 5px;
+    min-width: 50%;
+    display: inline-block;
+}
+
+#fs-picker-modal .list-group .list-group-item > [data-type="file"] .item-text:hover {
+    cursor: default;
+}
+
+#fs-picker-modal .list-group .list-group-item > [data-type="folder"] .item-text:hover {
+    cursor: pointer;
+    color: #77a4cc;
+}
+
+#fs-picker-modal .list-group .list-group-item .empty-item {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+#fs-picker-modal .list-group .list-group-item [name="item-picker"] {
+    vertical-align: top;
+    margin-right: 0.5em;
+}
+
+#fs-picker-modal .list-group .list-group-item .picker-empty {
+    padding-right: 20px;
+    padding-top: 17px;
+    display: inline-block;
+}
+
+#fs-picker-modal .modal-header {
+    padding: 5px 10px 3px 7px;
+}
+
+#fs-picker-modal .modal-body {
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+#fs-picker-modal-content .current-info-line .current-path {
+    color: #c5c5c5;
+    margin-bottom: 5px;
+}
+#fs-picker-modal-content .current-info-line .current-path .current-folder {
+    color: #000;
+}
+
+#fs-picker-modal-content .current-info-line .goto-top {
+    padding-top: 3px;
+    padding-left: 1em;
+    padding-bottom: 2px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#fs-picker-modal-content .current-info-line .goto-top:hover {
+    background-color: #ddd;
+}
+
+#fs-picker-modal .modal-footer {
+    padding: 7px 13px;
+}
+
+#fs-picker-modal .modal-footer button.btn {
+    padding: 3px 11px;
+}

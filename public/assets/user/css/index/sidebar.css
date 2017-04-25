@@ -1,0 +1,55 @@
+/*
+ * Sidebar
+ */
+.sidebar {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 3px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+    padding-left: 0;
+    padding-right: 0;
+}
+.sidebar .tab-content {
+    min-height: 200px;
+}
+/* Hide for mobile, show later */
+.sidebar .tab-content .sidebar-main {
+    margin-top: 3px;
+    position: relative;
+    /*top: 51px;
+    bottom: 0;
+    left: 0;*/
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+@media (min-width: 480px) {
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+    margin-right: -1px; /* 0px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -10px;
+}
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > li.active {
+    background-color: #428bca;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+.mCSB_inside > .mCSB_container {
+    margin-right: 16px;
+}

@@ -1,0 +1,43 @@
+.form-add .form-group label[for] {
+    padding-right: 0;
+}
+.form-add .form-group label[for] + div {
+    padding-left: 8px;
+}
+
+.form-add .btn-item-remove {
+    cursor: pointer;
+    color: #729fc5;
+    float: right;
+    font-size: 1.38em;
+}
+.form-add .btn-item-remove:hover {
+    color: #095392;
+}
+
+.form-add .list-group-item {
+    padding: 6px 15px;
+}
+
+.form-add .btn-fs-picker {
+    padding: 3px 8px;
+}
+
+.form-add .btn-fs-picker + .list-group {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+#txt-expires, #txt-count,#txt-expires-edit,#txt-count-edit {
+    width: auto;
+    display: inline-block;
+}
+#sel-expires, #sel-count,#sel-count-edit,#sel-expires-edit {
+    min-width: 6em;
+    width: auto;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.form-add .selected-items .list-group-item .item-icon {
+    margin-right: 0.4em;
+}

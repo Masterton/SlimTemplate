@@ -1,0 +1,74 @@
+#page-wrapper .role-permissions-list {
+    margin-top: 5px;
+}
+
+#page-wrapper .permission-list,
+#page-wrapper .role-permissions-list {
+    overflow-y: auto;
+    border: 1px ridge #64b0ff;
+    /* border-right-width: 2px; */
+    margin-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    margin-bottom: 5px;
+}
+#page-wrapper .permission-list > li,
+#page-wrapper .role-permissions-list > li {
+    padding-left: 0.5em;
+    list-style-type: none;
+    height: 2em;
+    line-height: 2em;
+    cursor: default;
+}
+#page-wrapper .permission-list > li:hover,
+#page-wrapper .role-permissions-list > li:hover {
+    color: #fff;
+    background-color: #64b0ff;
+}
+
+#page-wrapper .btn-save {
+    float: right;
+    right: 3em;
+    padding: 3px 12px;
+    position: relative;
+    top: 4px;
+}
+
+.fc-field {
+    margin: 5px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(222, 222, 222, 1.0);
+    list-style-type: none;
+}
+
+.fc-field:hover {
+    outline: #cacaca solid 1px;
+}
+
+.fc-selected {
+    background-color: #ffe284;
+}
+
+.fc-selected:hover {
+    background-color: #ffd448;
+}
+
+#page-wrapper .permission-list *.unselectable,
+#page-wrapper .role-permissions-list *.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
+#page-wrapper .permission-list *::selection,
+#page-wrapper .role-permissions-list *::selection {
+    background-color: transparent;
+}

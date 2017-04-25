@@ -1,0 +1,60 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
+}
+
+.navbar {
+    background-color: #37325a;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+.navbar .navbar-brand:focus,
+.navbar .navbar-brand:hover {
+    color: #9d9d9d;
+}
+
+.navbar .navbar-nav>li>a {
+    color: #fff;
+}
+.navbar .navbar-nav>li>a:focus,
+.navbar .navbar-nav>li>a:hover {
+    color: #9d9d9d;
+}
+
+.navbar .navbar-nav>li:hover {
+    border-bottom: 3px solid #fa1;
+}
+.navbar .navbar-nav>li:hover > a {
+    margin-top: -3px;
+}
+
+.nav-current {
+    border-bottom: 3px solid #fa1;
+}
+.navbar .navbar-nav>li > a {
+    margin-top: -3px;
+}

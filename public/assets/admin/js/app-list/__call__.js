@@ -1,0 +1,4 @@
+bindAddApp();
+getAppList();
+bindDrowdownClick();
+bindModifyApp();

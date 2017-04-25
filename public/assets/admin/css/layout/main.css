@@ -1,0 +1,72 @@
+#wrapper .navbar {
+    background-color: #37325a;
+}
+#wrapper .navbar-inverse .navbar-top-links > li > a {
+    color: #fff;
+}
+#wrapper .navbar-inverse .navbar-nav > li > a:focus,
+#wrapper .navbar-inverse .navbar-nav > li > a:hover {
+    color: #9d9d9d;
+}
+
+#page-wrapper {
+    margin-top: 1.25em;
+    margin-left: 220px;
+    padding-right: 0;
+}
+
+.sidebar .sidebar-nav {
+    overflow-y: scroll;
+    max-height: 2048px;
+}
+
+.sidebar ul > li > a:hover {
+    background-color: #e8f4ff;
+    color: #084782;
+}
+.sidebar ul li.active > a,
+.sidebar-highlight,
+.sidebar-highlight:hover {
+    background-color: #baddfb;
+}
+.sidebar-highlight > a {
+    color: #4253f5;
+}
+.sidebar-highlight:hover > a {
+    background-color: #baddfb !important;
+}
+.sidebar-highlight > a:hover {
+    color: #5a92ef !important;
+}
+.sidebar ul li.active > ul {
+    background-color: #dff0ff;
+}
+.sidebar ul li a.active {
+    background-color: #64b0ff;
+    color: #fff;
+}
+
+.kz-data-panel {
+    margin-top: 1.5em;
+}
+.kz-data-panel .panel-heading button {
+    margin-top: -3px;
+    padding: 3px 12px;
+}
+
+/* bootstrap中, 以下样式默认　position　为　relative, 导致 panel 产生滚动条, 改成　absolute　可以解决此bug */
+.kz-data-panel td .btn-group,
+.kz-data-panel td .dropdown {
+    position: absolute;
+}
+.kz-data-panel td .btn-group > [data-toggle="dropdown"] {
+    top: -4px;
+    padding: 3px 12px;
+}
+.kz-data-panel td .btn-group .dropdown-menu .divider  {
+    margin: 1px 0;
+}
+.kz-data-panel td .btn-group > .dropdown-menu {
+    min-width: 3em;
+    top: 1.85em;
+}

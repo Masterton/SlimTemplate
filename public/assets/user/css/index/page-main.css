@@ -1,0 +1,48 @@
+.inline-block {
+    display: inline-block !important;
+}
+
+.main a{
+    color:#337ab7 !important;
+}
+
+.page-body {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-top:50px;
+}
+.page-body .sidebar {
+    width: 280px;
+    float: left;
+    min-height: 300px;
+}
+.page-body .move-line {
+    z-index: +2;
+    cursor: ew-resize;
+    position: absolute;
+    top: 0;
+    bottom: 1px;
+    left: 282px;
+    min-height: 300px;
+    border-right: 6px solid #fa1;
+    display: inline-block;
+}
+.page-body .main {
+    position: absolute;
+    top: 0;
+    left: 289px;
+    bottom: 1px;
+    width: auto;
+    float: left;
+    min-height: 300px;
+    background-color: #ccc;
+}
+.clear-fix {
+    clear: both;
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 15px;
+}

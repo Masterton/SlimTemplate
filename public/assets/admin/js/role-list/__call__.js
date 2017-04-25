@@ -1,0 +1,4 @@
+bindAddRole();
+getRoleList();
+bindDrowdownClick();
+bindModifyRole();

@@ -1,0 +1,258 @@
+{
+    "user/js/": [
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "index/common.js",
+                "index/tree.js",
+                "index/operate-bar.js",
+                "index/list.js",
+                "index/upload.js",
+                "index/__call__.js"
+            ],
+            "target": "index.js",
+            "require_import" : "'layui', 'jquery', 'utils', 'dialog', 'md5', 'store', 'scrollbar', 'treeview', 'contextmenu', 'bootstrap-notify', 'jquery-fileupload'",
+            "require_export" : "layui, $, utils, dialog, md5, store"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "@merge-common/js/fs-picker.js",
+                "asset/common.js",
+                "asset/overview.js",
+                "asset/add.js",
+                "asset/operation.js",
+                "asset/__call__.js"
+            ],
+            "target": "asset.js",
+            "require_import" : "'jquery', 'utils', 'dialog', 'scrollbar', 'bootstrap-notify'",
+            "require_export" : "$, utils, dialog"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "version/list.js",
+                "version/operation.js",
+                "version/__call__.js"
+            ],
+            "target": "version.js",
+            "require_import" : "'jquery', 'utils', 'dialog', 'bootstrap-notify'",
+            "require_export" : "$, utils, dialog"
+        }
+    ],
+    "user/css/": [
+        {
+            "type": "css",
+            "files": [
+                "index/sidebar.css",
+                "index/fs-tree.css",
+                "index/page-main.css",
+                "index/operate-bar.css",
+                "index/table-list.css",
+                "index/upload.css"
+            ],
+            "target": "index.css"
+        },
+        {
+            "type": "css",
+            "files": [
+                "@merge-common/css/fs-picker.css",
+                "asset/table-list.css",
+                "asset/add.css",
+                "asset/main.css"
+            ],
+            "target": "asset.css"
+        }
+    ],
+
+    "auth/js/": [
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "login/main.js",
+                "login/__call__.js"
+            ],
+            "target": "login.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify'",
+            "require_export" : "$, utils"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "retrieve_password/main.js",
+                "retrieve_password/__call__.js"
+            ],
+            "target": "retrieve_password.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify'",
+            "require_export" : "$, utils"
+        }
+    ],
+    "auth/css/": [
+        {
+            "type": "css",
+            "files": [
+                "@merge-common/css/layout-header.css",
+                "layout/main.css"
+            ],
+            "target": "layout.css"
+        }
+    ],
+    "guest/js/": [
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "asset/iframe.js",
+                "asset/file.js",
+                "asset/folder.js",
+                "asset/package.js",
+                "asset/__call__.js"
+            ],
+            "target": "asset.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify'",
+            "require_export" : "$, utils"
+        }
+    ],
+    "guest/css/": [
+        {
+            "type": "css",
+            "files": [
+                "@merge-common/css/layout-header.css",
+                "layout/main.css"
+            ],
+            "target": "layout.css"
+        }
+    ],
+    "admin/js/": [
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "layout/startmin.js",
+                "layout/__call__.js",
+                "index/__call__.js"
+            ],
+            "target": "index.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify', 'metisMenu'",
+            "require_export" : "$, utils"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "layout/startmin.js",
+                "layout/__call__.js",
+                "user-list/add-user.js",
+                "user-list/edit-user.js",
+                "user-list/show-user-list.js",
+                "user-list/__call__.js"
+            ],
+            "target": "user-list.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify', 'metisMenu'",
+            "require_export" : "$, utils"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "layout/startmin.js",
+                "layout/__call__.js",
+                "role-list/add-role.js",
+                "role-list/edit-role.js",
+                "role-list/show-role-list.js",
+                "role-list/__call__.js"
+            ],
+            "target": "role-list.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify', 'metisMenu'",
+            "require_export" : "$, utils"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "layout/startmin.js",
+                "layout/__call__.js",
+                "permission-assign/__call__.js"
+            ],
+            "target": "permission-assign.js",
+            "require_import" : "'jquery', 'utils', 'dialog', 'jquery-ui', 'bootstrap-notify', 'bootstrap-select-zh_CN', 'metisMenu'",
+            "require_export" : "$, utils, dialog"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "layout/startmin.js",
+                "layout/__call__.js",
+                "app-list/add-app.js",
+                "app-list/edit-app.js",
+                "app-list/show-app-list.js",
+                "app-list/__call__.js"
+            ],
+            "target": "app-list.js",
+            "require_import" : "'jquery', 'utils', 'bootstrap-notify', 'metisMenu'",
+            "require_export" : "$, utils"
+        }
+    ],
+    "admin/css/": [
+        {
+            "type": "css",
+            "files": [
+                "layout/startmin.css",
+                "layout/main.css"
+            ],
+            "target": "layout.css"
+        }
+    ],
+    "transform/js/": [
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "index/main.js"
+            ],
+            "target": "index.js",
+            "require_import" : "'layui','jquery', 'utils', 'md5','dialog','bootstrap-notify','jquery-fileupload'",
+            "require_export" : "layui,$, utils,md5,dialog"
+        },
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "add/main.js",
+                "add/__call__.js",
+                "add/upload.js"
+            ],
+            "target": "add.js",
+            "require_import" : "'layui','jquery', 'utils', 'md5','dialog','bootstrap-notify','jquery-fileupload'",
+            "require_export" : "layui,$, utils,md5,dialog"
+        }
+    ],
+    "scheme/js/":[
+        {
+            "type": "js",
+            "files": [
+                "@merge-common/js/notify.js",
+                "@merge-common/js/highlight-current.js",
+                "index/main.js",
+                "index/__call__.js"
+            ],
+            "target": "index.js",
+            "require_import" : "'layui','jquery', 'utils', 'md5','bootstrap-notify','jquery-fileupload'",
+            "require_export" : "layui,$, utils,md5"
+        }
+    ]
+}

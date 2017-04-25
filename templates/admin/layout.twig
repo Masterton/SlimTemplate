@@ -1,0 +1,78 @@
+{% extends "base-layout.twig" %}
+
+{% block title %}{{ parent() }}{{ title }}{% endblock %}
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/admin/css/layout.css">
+    <style type="text/css">
+        .logined-user {
+            padding-right: 0.5em;
+        }
+        .page-header {
+            margin: 10px 0 16px 0;
+        }
+        .sidebar ul li a.current-active {
+            background-color: #d2d2d2;
+        }
+    </style>
+{% endblock %}
+{% block head_js %}
+    {{ parent() }}
+    <script type="text/javascript">
+    if(!window.GLOBAL) {
+        window.GLOBAL = {};
+    }
+    if(!GLOBAL.CHANGEPWD_URL) {
+        GLOBAL.UID = "{{ 'test' }}";
+    }
+    </script>
+{% endblock %}
+{% block dialog %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {# {% include 'admin/_common/modal-password.twig' ignore missing %} #}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                {% block page_content %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Blank</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                {% endblock %}
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+{% block foot_js %}
+    {% set main_prefix = 'admin-' %}
+    {{ parent() }}
+{% endblock %}

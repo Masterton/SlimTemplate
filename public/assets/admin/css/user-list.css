@@ -1,0 +1,7 @@
+#user-add-modal .width-1by2 {
+    width: 50%;
+}
+#user-add-modal .red-star {
+    color: #f00;
+    vertical-align: middle;
+}

@@ -1,0 +1,14 @@
+.page-main .tab-content {
+    padding-top: 0.8em;
+}
+
+.page-main .tab-content .tab-pane > .row {
+    margin-right: 0;
+    margin-left: -8px;
+}
+#fs-picker-modal{
+    z-index: 1042;
+}
+#fs-picker-modal-edit{
+    z-index: 1041;
+}

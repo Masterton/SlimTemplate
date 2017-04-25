@@ -1,0 +1,243 @@
+/* merge-common/css/fs-picker.css */
+#fs-picker-modal .list-group {
+    margin-bottom: 12px;
+}
+
+#fs-picker-modal .list-group .list-group-item {
+    padding: 6px 8px;
+}
+
+#fs-picker-modal .list-group .list-group-item div[data-name] .item-text {
+    padding-left: 5px;
+    min-width: 50%;
+    display: inline-block;
+}
+
+#fs-picker-modal .list-group .list-group-item > [data-type="file"] .item-text:hover {
+    cursor: default;
+}
+
+#fs-picker-modal .list-group .list-group-item > [data-type="folder"] .item-text:hover {
+    cursor: pointer;
+    color: #77a4cc;
+}
+
+#fs-picker-modal .list-group .list-group-item .empty-item {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+#fs-picker-modal .list-group .list-group-item [name="item-picker"] {
+    vertical-align: top;
+    margin-right: 0.5em;
+}
+
+#fs-picker-modal .list-group .list-group-item .picker-empty {
+    padding-right: 20px;
+    padding-top: 17px;
+    display: inline-block;
+}
+
+#fs-picker-modal .modal-header {
+    padding: 5px 10px 3px 7px;
+}
+
+#fs-picker-modal .modal-body {
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+#fs-picker-modal-content .current-info-line .current-path {
+    color: #c5c5c5;
+    margin-bottom: 5px;
+}
+#fs-picker-modal-content .current-info-line .current-path .current-folder {
+    color: #000;
+}
+
+#fs-picker-modal-content .current-info-line .goto-top {
+    padding-top: 3px;
+    padding-left: 1em;
+    padding-bottom: 2px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#fs-picker-modal-content .current-info-line .goto-top:hover {
+    background-color: #ddd;
+}
+
+#fs-picker-modal .modal-footer {
+    padding: 7px 13px;
+}
+
+#fs-picker-modal .modal-footer button.btn {
+    padding: 3px 11px;
+}
+/* asset/table-list.css */
+#tab-overview .list-mode .table-responsive {
+    margin-right: -8px;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    padding: 2px 3px;
+    vertical-align: middle;
+}
+
+.table>thead th {
+    text-align: center;
+}
+.table>thead th.col-chk {
+    width: 3.8em;
+    text-align: left;
+}
+.table>thead th.op-delete {
+    width: 3em;
+}
+.table>thead th.op-rename {
+    width: 3.6em;
+}
+.table>tbody td.op-delete,
+.table>tbody td.op-rename {
+    text-align: center;
+}
+.table>tbody td.col-chk label {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.table>tbody td.row-empty {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+.table>tbody td.col-name > span {
+    display: block;
+}
+.table>tbody > tr {
+    cursor: default;
+}
+.table>tbody > tr:hover td.col-name > span {
+    color: #77a4cc;
+}
+
+.table>tbody td.col-name span[data-type] i.fa {
+    margin-right: 4px;
+    margin-left: 3px;
+}
+
+tbody td.inline-rename span[data-type] {
+    display: none;
+
+}
+tbody td.inline-create-folder .input-group-addon,
+tbody td.inline-rename .input-group-addon {
+    background-color: #ccc;
+    padding: 3px 2px 0 2px;
+    float: left;
+}
+tbody td.inline-create-folder .form-control,
+tbody td.inline-rename .form-control {
+    height: 1em;
+    padding: 10px 12px;
+    margin-left: 1em;
+    width: auto;
+}
+tbody td.inline-create-folder .btn-cf-ok,
+tbody td.inline-create-folder .btn-cf-cancel,
+tbody td.inline-rename .btn-rename-ok,
+tbody td.inline-rename .btn-rename-cancel {
+    padding: 2px 5px;
+    font-size: 1em;
+    clear: both;
+    border: 1px solid #807f7f;
+    margin-left: 3px;
+    border-radius: 3px;
+}
+
+tbody td.inline-create-folder .btn-cf-ok:hover,
+tbody td.inline-create-folder .btn-cf-cancel:hover,
+tbody td.inline-rename .btn-rename-ok:hover,
+tbody td.inline-rename .btn-rename-cancel:hover {
+    color: #337ab7;
+    border-color: #337ab7;
+}
+
+tbody td.inline-create-folder .input-group-btn,
+tbody td.inline-rename .input-group-btn {
+    float: left;
+    font-size: 1em;
+    margin-left: 1px;
+    padding-top: 2px;
+}
+
+.list-mode .tb-asset-list tbody tr[data-id]:hover td.cell-name {
+    color: #77a4cc;
+    cursor: pointer;
+}
+/* asset/add.css */
+.form-add .form-group label[for] {
+    padding-right: 0;
+}
+.form-add .form-group label[for] + div {
+    padding-left: 8px;
+}
+
+.form-add .btn-item-remove {
+    cursor: pointer;
+    color: #729fc5;
+    float: right;
+    font-size: 1.38em;
+}
+.form-add .btn-item-remove:hover {
+    color: #095392;
+}
+
+.form-add .list-group-item {
+    padding: 6px 15px;
+}
+
+.form-add .btn-fs-picker {
+    padding: 3px 8px;
+}
+
+.form-add .btn-fs-picker + .list-group {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+#txt-expires, #txt-count,#txt-expires-edit,#txt-count-edit {
+    width: auto;
+    display: inline-block;
+}
+#sel-expires, #sel-count,#sel-count-edit,#sel-expires-edit {
+    min-width: 6em;
+    width: auto;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.form-add .selected-items .list-group-item .item-icon {
+    margin-right: 0.4em;
+}
+/* asset/main.css */
+.page-main .tab-content {
+    padding-top: 0.8em;
+}
+
+.page-main .tab-content .tab-pane > .row {
+    margin-right: 0;
+    margin-left: -8px;
+}
+#fs-picker-modal{
+    z-index: 1042;
+}
+#fs-picker-modal-edit{
+    z-index: 1041;
+}

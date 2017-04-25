@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    {# Set render engine for 360 browser #}
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {# No Baidu Siteapp #}
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="{{ base_url() }}/favicon.ico">
+    {# Add to homescreen for Chrome on Android #}
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="icon" sizes="192x192" type="image/png" href="{{ base_url() }}/favicon.png">
+    {# Add to homescreen for Safari on iOS #}
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="apple-touch-icon-precomposed" href="{{ base_url() }}/favicon.png">
+    {# Tile icon for Win8 (144x144 + tile color) #}
+    <meta name="msapplication-TileImage" content="{{ base_url() }}/favicon.png" />
+    <meta name="msapplication-TileColor" content="#0e90d2" />
+    {# seo #}
+    <meta name="keywords" content="keywords" />
+    <meta name="description" content="description" />
+    <meta name="author" content="cloudkz.cn[gsw945]" />
+    <title>{% block title %}测试使用{% endblock %}</title>
+    {% block head_css %}
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/bootstrap/css/bootstrap.min.css">
+    <!--[if lt IE 8]>
+    <link type="text/css" rel="stylesheet" href="{{ base_url() }}/lib/bootstrap/css/bootstrap-ie7.css">
+    <![endif]-->
+    {% endblock %}
+    {% block head_js %}
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="{{ base_url() }}/lib/html5shiv/html5shiv.min.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}/lib/respond/respond.min.js"></script>
+    <![endif]-->
+    {% endblock %}
+</head>
+<body>
+    {% block dialog %}{% endblock %}
+    {% block header %}{% endblock %}
+    {% block content %}
+        <ul class="nav nav-pills nav-stacked">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+    {% endblock %}
+    {% block footer %}{% endblock %}
+    {% block foot_js %}
+    <script type="text/javascript">
+        // requirejs main模块加载超时解决
+        var requirejs = {
+            waitSeconds: 0
+        };
+        if(!window.GLOBAL) {
+            window.GLOBAL = {};
+        }
+        if(!GLOBAL.SITE_BASE_URL) {
+            GLOBAL.SITE_BASE_URL = "";
+        }
+        if(!GLOBAL.FILE_VIEW_URL) {
+            GLOBAL.FILE_VIEW_URL = "";
+        }
+        if(!GLOBAL.FILE_RAW_URL) {
+            GLOBAL.FILE_RAW_URL = "";
+        }
+        if(!GLOBAL.ASSET_BASE_URL) {
+            GLOBAL.ASSET_BASE_URL = "";
+        }
+    </script>
+    <script type="text/javascript" src="{{ base_url() }}/lib/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}/lib/requirejs/require-2.3.2.min.js"></script>
+    {% endblock %}
+</body>
+</html>

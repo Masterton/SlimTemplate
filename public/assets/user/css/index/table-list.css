@@ -1,0 +1,100 @@
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    padding: 2px 3px;
+    vertical-align: middle;
+}
+
+.table>thead th {
+    text-align: center;
+}
+.table>thead th.col-chk {
+    width: 3.8em;
+    text-align: left;
+}
+.table>thead th.op-version {
+    width: 3em;
+}
+.table>thead th.op-delete {
+    width: 3em;
+}
+.table>thead th.op-rename {
+    width: 3.6em;
+}
+.table>thead th.op-version,
+.table>tbody td.op-delete,
+.table>tbody td.op-rename {
+    text-align: center;
+}
+.table>tbody td.col-chk label {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.table>tbody td.row-empty {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+.table>tbody td.col-name > span {
+    display: block;
+}
+.table>tbody > tr {
+    cursor: default;
+}
+.table>tbody > tr:hover td.col-name > span {
+    color: #77a4cc;
+}
+
+.table>tbody td.col-name span[data-type] i.fa {
+    margin-right: 4px;
+    margin-left: 3px;
+}
+
+tbody td.inline-rename span[data-type] {
+    display: none;
+
+}
+tbody td.inline-create-folder .input-group-addon,
+tbody td.inline-rename .input-group-addon {
+    background-color: #ccc;
+    padding: 3px 2px 0 2px;
+    float: left;
+}
+tbody td.inline-create-folder .form-control,
+tbody td.inline-rename .form-control {
+    height: 1em;
+    padding: 10px 12px;
+    margin-left: 1em;
+    width: auto;
+}
+tbody td.inline-create-folder .btn-cf-ok,
+tbody td.inline-create-folder .btn-cf-cancel,
+tbody td.inline-rename .btn-rename-ok,
+tbody td.inline-rename .btn-rename-cancel {
+    padding: 2px 5px;
+    font-size: 1em;
+    clear: both;
+    border: 1px solid #807f7f;
+    margin-left: 3px;
+    border-radius: 3px;
+}
+
+tbody td.inline-create-folder .btn-cf-ok:hover,
+tbody td.inline-create-folder .btn-cf-cancel:hover,
+tbody td.inline-rename .btn-rename-ok:hover,
+tbody td.inline-rename .btn-rename-cancel:hover {
+    color: #337ab7;
+    border-color: #337ab7;
+}
+
+tbody td.inline-create-folder .input-group-btn,
+tbody td.inline-rename .input-group-btn {
+    float: left;
+    font-size: 1em;
+    margin-left: 1px;
+    padding-top: 2px;
+}

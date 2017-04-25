@@ -5,6 +5,10 @@ return [
         'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
 
+        // debug
+        'debug' => true,
+        'mode' => 'development',
+        
         // Renderer settings
         'renderer' => [
             'template_path' => __DIR__ . '/../templates/',
@@ -42,10 +46,23 @@ return [
             'host' => 'localhost',
             'database' => 'slim',
             'username' => 'root',
-            'password' => 'root',
+            'password' => 'Zheng123456@',
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',
             'prefix'    => '',
         ],
+
+        // session
+        'session' => [
+            'name' => 'eduwest_session',
+            'autorefresh' => true,
+            'httponly' => true,
+            'lifetime' => '30 minutes'
+        ],
+
+        'upload_folder' => 'upload',
+        'upload_img_exts' => ['png', 'jpeg', 'jpg', 'gif', 'bmp'],
+        'upload_data_ext' => ['swf'],
+        'base_path' => full_path(__DIR__ . '/../public')
     ],
 ];

@@ -19,7 +19,7 @@ $container['logger'] = function ($c) {
 };
 
 // twig
-$container['view'] = function($c) {
+$container['twig'] = function($c) {
     $config = $c->get('settings');
     $view = new \Slim\Views\Twig(
         $config['view']['template_path'],
@@ -28,6 +28,23 @@ $container['view'] = function($c) {
     $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
     $view->addExtension(new \Slim\Views\TwigExtension($c['router'], $basePath));
     return $view;
+};
+
+// Service factory for the Eloquent ORM
+$container['db'] = function ($container) {
+    $capsule = new \Illuminate\Database\Capsule\Manager;
+    $capsule->addConnection($container['settings']['db']);
+
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
+
+    $pdo = $capsule->getConnection()->getPdo();
+    $tz = (new \DateTime('now', new \DateTimeZone('Asia/Shanghai')))->format('P');
+    $pdo->exec("SET time_zone='$tz';");
+    
+    $container['pdo'] = $pdo;
+
+    return $capsule;
 };
 
 // 全局变量读取器
