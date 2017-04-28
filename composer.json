@@ -18,7 +18,8 @@
         "monolog/monolog": "^1.17",
         "slim/twig-view": "^2.1.1",
         "illuminate/database": "^5.2",
-        "alexgarrett/violin": "2.2.2"
+        "alexgarrett/violin": "2.2.2",
+        "workerman/phpsocket.io": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"
