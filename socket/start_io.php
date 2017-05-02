@@ -47,11 +47,12 @@ $sender_io->on('connection', function($socket){
         {
              return;
         }
-        global $uidConnectionMap, $sender_io;
+        global $uidConnectionMap, $sender_io, $connect_socket_user_id;
         // 将uid的在线socket数减一
         if(--$uidConnectionMap[$socket->uid] <= 0)
         {
             unset($uidConnectionMap[$socket->uid]);
+            unset($connect_socket_user_id[array_search($socket->uid, $connect_socket_user_id)]);
         }
     });
 });
