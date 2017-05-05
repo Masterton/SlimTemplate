@@ -2,26 +2,43 @@
 
 return [
     '/ping[/]' => [
-        'map' => [
+        'get' => [
             'handler' => function(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[]) {
                 $response->getBody()->write("45465465");
                 return $response;
             },
             'name' => 'api_ping',
-            'methods' => ['GET', 'POST'],
             'auth' => false
         ],
     ],
-    '/test[/]' => [
-        'get'    => [
-            'handler' => function(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[]) {
-                $params = [];
-                return $this->twig->render($response, 'test.twig', $params);
-            },
-            'name'    => 'api_get_node',
+    '/menu[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\MenuController:query_menu",
+            'name'    => 'api_get_menu',
             'auth'    => true,
-            'op_class' => '节点',
-            'op_name' => '查询',
+            'op_class' => 'api接口',
+            'op_name' => '查询菜单',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\MenuController:add_menu",
+            'name'    => 'api_post_menu',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '添加菜单',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\MenuController:modify_menu",
+            'name'    => 'api_put_menu',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改菜单',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\MenuController:delete_menu",
+            'name'    => 'api_delete_menu',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除菜单',
         ],
     ],
 ];

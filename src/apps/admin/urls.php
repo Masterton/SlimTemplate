@@ -6,7 +6,7 @@ return [
                 $response->getBody()->write("pong");
                 return $response;
             },
-            'name' => 'api_ping',
+            'name' => 'admin_aaa',
             'methods' => ['GET', 'POST'],
             'auth' => false
         ],
@@ -16,7 +16,8 @@ return [
             'handler' => 'App\Views\AdminView:index',
             'name' => 'admin_index',
             'auth' => true,
-            'op_name' => '访问"管理后台-统计概况"'
+            'op_class' => '后台管理接口',
+            'op_name' => '主页',
         ],
     ],
 ];

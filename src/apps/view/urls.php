@@ -7,10 +7,10 @@ return [
                 $params = [];
                 return $this->twig->render($response, 'test.twig', $params);
             },
-            'name'    => 'api_get_node',
+            'name'    => 'view_test',
             'auth'    => true,
-            'op_class' => '节点',
-            'op_name' => '查询',
+            'op_class' => '视图接口',
+            'op_name' => '视图测试',
         ],
     ],
     '/400[/]' => [
@@ -19,10 +19,10 @@ return [
                 $params = [];
                 return $this->twig->render($response, 'error/400.twig', $params);
             },
-            'name'    => 'api_get_node',
+            'name'    => 'view_400',
             'auth'    => true,
-            'op_class' => '节点',
-            'op_name' => '查询',
+            'op_class' => '视图接口',
+            'op_name' => '400错误',
         ],
     ],
     '/403[/]' => [
@@ -31,10 +31,10 @@ return [
                 $params = [];
                 return $this->twig->render($response, 'error/403.twig', $params);
             },
-            'name'    => 'api_get_node',
+            'name'    => 'view_403',
             'auth'    => true,
-            'op_class' => '节点',
-            'op_name' => '查询',
+            'op_class' => '视图接口',
+            'op_name' => '403错误',
         ],
     ],
     '/404[/]' => [
@@ -43,10 +43,10 @@ return [
                 $params = [];
                 return $this->twig->render($response, 'error/404.twig', $params);
             },
-            'name'    => 'api_get_node',
+            'name'    => 'view_404',
             'auth'    => true,
-            'op_class' => '节点',
-            'op_name' => '查询',
+            'op_class' => '视图接口',
+            'op_name' => '404错误',
         ],
     ],
     '/500[/]' => [
@@ -55,10 +55,10 @@ return [
                 $params = [];
                 return $this->twig->render($response, 'error/500.twig', $params);
             },
-            'name'    => 'api_get_node',
+            'name'    => 'view_500',
             'auth'    => true,
-            'op_class' => '节点',
-            'op_name' => '查询',
+            'op_class' => '视图接口',
+            'op_name' => '500错误',
         ],
     ],
 

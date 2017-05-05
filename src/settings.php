@@ -47,6 +47,7 @@ return [
             'database' => 'slim',
             'username' => 'root',
             'password' => 'Zheng123456@',
+            //'password' => 'Zheng123456@',
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',
             'prefix'    => '',

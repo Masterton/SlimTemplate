@@ -1,17 +1,18 @@
 <?php
 
+//创建路由
 $sub_apps = require __DIR__ . '/apps/entry.php';
 
 $i = 0;
 foreach ($sub_apps as $key => $sub_app) {
-    $prefix = $sub_app['prefix'];
-    $urls = $sub_app['urls'];
+    $prefix = $sub_app['prefix'];//路由前缀，如：/api
+    $urls = $sub_app['urls'];//具体路由名，如：/menu[/]
     foreach ($urls as $url => $action) {
         foreach ($action as $method => $content) {
-            $handler = $content['handler'];
-            $route = $prefix . $url;
+            $handler = $content['handler'];//路由回调
+            $route = $prefix . $url;//把路由前缀和具体接口名串接为完整路由（接口地址）
             $id = null;
-            switch (strtolower($method)) {
+            switch (strtolower($method)) {//$method 路由模式，例如：post、get、delete、put等
                 case 'get':
                     $id = $app->get($route, $handler);
                     break;
@@ -37,7 +38,7 @@ foreach ($sub_apps as $key => $sub_app) {
                 case 'any':
                     $id = $app->any($route, $handler);
                     break;
-                case 'map':
+                case 'map'://自定义路由，多个 HTTP 请求方法的路由
                     if(array_key_exists('methods', $content)) {
                         $methods = $content['methods'];
                         if(!empty($methods)) {
@@ -58,17 +59,17 @@ foreach ($sub_apps as $key => $sub_app) {
                     break;
             }
             if(isset($id)) {
-                $name = null;
+                $name = null;//获取api的别名
                 if(array_key_exists('name', $content)) {
                     $name = $content['name'];
                 }
                 if(!isset($name)) {
                     $name = 'route' . $i;
                 }
-                $id -> setName($name);
+                $id -> setName($name);//设置路由名称
                 if(array_key_exists('auth', $content)) {
                     $auth = $content['auth'];
-                    if($auth === true) {
+                    if($auth === true) {//是否是正式需要的接口（测试接口不写入）
                         $container->get('globals')->item_push('authRouteList', $name);
                     }
                 }
@@ -88,6 +89,17 @@ foreach ($sub_apps as $key => $sub_app) {
                     $file = $content['file'];
                     if($file) {
                         $id->setOutputBuffering('prepend');
+                    }
+                }
+                if($container->get('settings')['debug']) {
+                    if(array_key_exists('op_class', $content) && array_key_exists('op_name', $content)) {
+                        $op_class = $content['op_class'];//接口类型
+                        $op_name = $content['op_name'];//接口名称
+                        $op_value = [
+                            'class'=>$op_class,
+                            'name'=>$op_name
+                        ];
+                        $container->get('globals')->item_push('operationList', $name, $op_value);
                     }
                 }
             }

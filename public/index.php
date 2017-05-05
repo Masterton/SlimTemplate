@@ -9,6 +9,7 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
+require __DIR__ . '/../src/set_env.php';
 require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
@@ -25,6 +26,10 @@ require __DIR__ . '/../src/middleware.php';
 
 // Register routes
 require __DIR__ . '/../src/routes.php';
+
+/*print_r("<pre>");
+print_r($container->get('globals'));
+exit;*/
 
 // Run app
 $app->run();
