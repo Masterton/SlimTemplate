@@ -44,9 +44,9 @@ return [
         'db' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'slim',
-            'username' => 'root',
-            'password' => 'Zheng123456@',
+            'database' => 'zheng',
+            'username' => 'zheng',
+            'password' => '123456',
             //'password' => 'Zheng123456@',
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',

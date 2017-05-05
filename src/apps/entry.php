@@ -14,7 +14,7 @@ return [
         'prefix' => '/admin',
         'urls' => require __DIR__ . '/admin/urls.php'
     ],*/
-    /*'db' => [
+    'db' => [
         'prefix' => '/db',
         'urls' => [
             '/up[/[{table:\w+}[/]]]' => [
@@ -32,5 +32,5 @@ return [
                 ]
             ],
         ]
-    ],*/
+    ],
 ];
