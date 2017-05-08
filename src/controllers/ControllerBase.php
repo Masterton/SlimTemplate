@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * ControllerBase
+ * @author Masterton <zhengcloud@foxmail.com>
  * @property Builder $db
  */
 class ControllerBase
