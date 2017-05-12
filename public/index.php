@@ -27,6 +27,9 @@ require __DIR__ . '/../src/middleware.php';
 // Register routes
 require __DIR__ . '/../src/routes.php';
 
+// Register plugin
+require __DIR__ . '/../plugin/start.php';
+
 /*print_r("<pre>");
 print_r($container->get('globals'));
 exit;*/
