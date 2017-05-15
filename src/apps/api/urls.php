@@ -11,6 +11,13 @@ return [
             'auth' => false
         ],
     ],
+    '/node_method[/]' => [
+        'get' => [
+            'handler' => 'App\Controllers\TestController:test_node_method',
+            'name' => 'api_node_method',
+            'auth' => false
+        ],
+    ],
     '/menu[/]' => [
         'get' => [
             'handler' => "App\Controllers\MenuController:query_menu",

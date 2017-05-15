@@ -23,10 +23,8 @@ class Loader{
     private static $fallbackDirsPsr0 = [];
 
 
-    public static function autoload($class) {
-        print_r("<pre>");
-        print_r($class);
-        exit;
+    public static function autoload($class)
+    {
         if ($file = self::findFile($class)) {
             // Win环境严格区分大小写
             if (IS_WIN && pathinfo($file, PATHINFO_FILENAME) != pathinfo(realpath($file), PATHINFO_FILENAME)) {
@@ -37,7 +35,7 @@ class Loader{
         }else{
             $class_info = explode('\\',$class);
             // 这里是正常的框架类.
-            if(count($class_info) > 1 && $class_info[0] === 'framework'){
+            if(count($class_info) > 1 && $class_info[0] === 'plugin'){
                 // 是否是框架目录.
                 array_shift($class_info);
                 $base_url = FRAME_PATH . DS .implode('/',$class_info) . EXT;
@@ -55,7 +53,8 @@ class Loader{
      * @param $class
      * @return bool
      */
-    private static function findFile($class) {
+    private static function findFile($class)
+    {
         if (!empty(self::$_map[$class])) {
             // 类库映射
             return self::$_map[$class];
@@ -113,8 +112,8 @@ class Loader{
      * 注册自动加载方法.
      * @param string $autoload
      */
-    public static function register($autoload = '') {
-
+    public static function register($autoload = '')
+    {
         // 注册系统自动加载
         spl_autoload_register($autoload ?: 'plugin\\Loader::autoload', true, true);
 
@@ -122,25 +121,16 @@ class Loader{
         if (is_dir(VENDOR_PATH . 'composer')) {
             self::registerComposerLoader();
         }
-
-        /*print_r("<pre>");
-        print_r(self::$prefixLengthsPsr4);
-        print_r(self::$prefixDirsPsr4);
-        print_r(self::$fallbackDirsPsr4);
-        print_r(self::$prefixesPsr0);
-        print_r(self::$fallbackDirsPsr0);
-        print_r(self::$_map);
-        exit;*/
     }
 
     /**
-     * 使用加载方法.用于加载不规范的类文件
+     * 使用加载方法.用于加载不规范的类文件.
      * @param string $class     类名.
      * @param string $baseUrl   路径.
      * @param string $ext       文件后缀.
      * @return bool
      */
-    public static function Load($class, $baseUrl = '', $ext = EXT) {
+    public static function Load($class, $baseUrl = '', $ext = EXT){
         static $_file = [];
         $key          = $class . $baseUrl;
         $class        = str_replace(['.', '#'], [DS, '.'], $class);
@@ -185,7 +175,8 @@ class Loader{
     /**
      * 获取composer注册过的类文件.
      */
-    private static function registerComposerLoader() {
+    private static function registerComposerLoader()
+    {
         if (is_file(VENDOR_PATH . 'composer/autoload_namespaces.php')) {
             $map = require VENDOR_PATH . 'composer/autoload_namespaces.php';
             foreach ($map as $namespace => $path) {
@@ -221,7 +212,8 @@ class Loader{
      * @param bool $prepend
      * @return void
      */
-    private static function addPsr4($prefix, $paths, $prepend = false) {
+    private static function addPsr4($prefix, $paths, $prepend = false)
+    {
         if (!$prefix) {
             if ($prepend) {
                 self::$fallbackDirsPsr4 = array_merge(
@@ -261,7 +253,7 @@ class Loader{
      * @param bool $prepend
      * @return void
      */
-    private static function addPsr0($prefix,$paths , $prepend = false) {
+    private static function addPsr0($prefix,$paths , $prepend = false){
         if (!$prefix) {
             if ($prepend) {
                 self::$fallbackDirsPsr0 = array_merge(
@@ -300,7 +292,8 @@ class Loader{
      * @param string $map   路径.
      * @return void
      */
-    private static function addClassMap($class, $map = '') {
+    private static function addClassMap($class, $map = '')
+    {
         if (is_array($class)) {
             self::$_map = array_merge(self::$_map, $class);
         } else {
@@ -312,13 +305,14 @@ class Loader{
      * 私有构造方法.
      * Loader constructor.
      */
-    private function __construct() {
+    private function __construct(){
     }
 
     /**
      * 私有克隆方法.
      */
-    private function __clone() {
+    private function __clone()
+    {
         // TODO: Implement __clone() method.
     }
 }

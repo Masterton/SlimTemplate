@@ -12,7 +12,4 @@ defined('IS_WIN') or define('IS_WIN' ,DIRECTORY_SEPARATOR === '\\' ? true : fals
 // 加载引入类.
 require FRAME_PATH .'/Loader.php';
 
-/*print_r(self::$prefixLengthsPsr4);
-exit;*/
-
 \plugin\Loader::register();
