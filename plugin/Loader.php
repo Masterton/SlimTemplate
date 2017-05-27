@@ -25,6 +25,8 @@ class Loader{
 
     public static function autoload($class)
     {
+        print_r($class);
+        print_r("<br />");
         if ($file = self::findFile($class)) {
             // Win环境严格区分大小写
             if (IS_WIN && pathinfo($file, PATHINFO_FILENAME) != pathinfo(realpath($file), PATHINFO_FILENAME)) {
