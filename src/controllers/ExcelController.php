@@ -10,7 +10,8 @@ namespace App\Controllers;
 * @since 1.0
 *
 */
-class ExcelController extends ControllerBase {
+class ExcelController extends ControllerBase
+{
 
     /**
      * Excel 文件的导入
@@ -18,7 +19,8 @@ class ExcelController extends ControllerBase {
      * @return
      *
      */
-    public function import_excel() {
+    public function import_excel()
+    {
         //设置excel表列的标头
 		$letter = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 		//创建一个excel对象
@@ -70,7 +72,8 @@ class ExcelController extends ControllerBase {
      * @return
      *
      */
-    public function export_excel($data, $title, $header=[]) {
+    public function export_excel($data, $title, $header=[])
+    {
         //创建一个excel对象
 		$objExcel = new PHPExcel();
 		//设置excel表列的标头

@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 /**
- * TestController
+ * MailerController
  * @author Masterton <zhengcloud@foxmail.com>
  * @version 1.0
  * @since 1.0
  *
  */
-class TestController extends ControllerBase
+class MailerController extends ControllerBase
 {
 
     /**
@@ -18,10 +18,8 @@ class TestController extends ControllerBase
      * @return $result 结果
      *
      */
-    public function test_node_method(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[])
+    public function SendMailer()
     {
-        //$node = new Node(['driver'=>'Edit'],['work_num'=>'0000000000000025','user_id'=>1,'content'=>null]);
-        //var_dump($node->prev());exit;
 
         // 实例化PHPMailer核心类
         $mail = new \PHPMailer;
@@ -74,7 +72,7 @@ class TestController extends ControllerBase
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');
         // $mail->setFrom('@qq.com', 'Mailer');
-
+        
         // 添加多个收件人 则多次调用方法即可
         // $mail->addAddress('xxx@163.com','Zeus');
 

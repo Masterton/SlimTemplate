@@ -10,7 +10,8 @@ namespace App\Controllers;
 * @since 1.0
 *
 */
-class WordController extends ControllerBase {
+class WordController extends ControllerBase
+{
 
     /**
      * 
@@ -18,7 +19,8 @@ class WordController extends ControllerBase {
      * @return $result 结果
      *
      */
-    public function query_menu(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[]) {
+    public function query_menu(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[])
+    {
         echo "11111122222";
     }
 }

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * ControllerBase
  * @author Masterton <zhengcloud@foxmail.com>
- * @property Builder $db
+ * @version 1.0
+ * @since 1.0
+ *
  */
 class ControllerBase
 {
