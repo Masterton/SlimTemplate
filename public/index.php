@@ -28,7 +28,7 @@ require __DIR__ . '/../src/middleware.php';
 require __DIR__ . '/../src/routes.php';
 
 // Register plugin
-require __DIR__ . '/../plugin/start.php';
+//require __DIR__ . '/../plugin/start.php';
 
 // Run app
 $app->run();
