@@ -6,11 +6,11 @@ return [
         'prefix' => '/api',
         'urls' => require __DIR__ . '/api/urls.php'
     ],
-    /*'view' => [
+    'view' => [
         'prefix' => '/view',
         'urls' => require __DIR__ . '/view/urls.php'
     ],
-    'admin' => [
+    /*'admin' => [
         'prefix' => '/admin',
         'urls' => require __DIR__ . '/admin/urls.php'
     ],*/
