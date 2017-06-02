@@ -20,7 +20,7 @@ class TestController extends ControllerBase
      */
     public function test_node_method(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[])
     {
-        //$node = new Node(['driver'=>'Edit'],['work_num'=>'0000000000000025','user_id'=>1,'content'=>null]);
+        /*//$node = new Node(['driver'=>'Edit'],['work_num'=>'0000000000000025','user_id'=>1,'content'=>null]);
         //var_dump($node->prev());exit;
 
         // 实例化PHPMailer核心类
@@ -89,9 +89,9 @@ class TestController extends ControllerBase
         $mail->Body    = '这是一个测试！ <b>in bold!</b>';
         $mail->AltBody = '这是一个测试！这是一个测试！';
 
-        /*print_r("<pre>");
+        print_r("<pre>");
         print_r($mail);
-        exit;*/
+        exit;
 
         //判断发送是否成功和失败后的错误信息
         if(!$mail->send()) {
@@ -99,9 +99,17 @@ class TestController extends ControllerBase
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
             echo 'Message has been sent';
-        }
+        }*/
         
-
-        
+        $header = array('姓名', '性别', '年龄', '电话', '地址', '学校', '照片');
+        $data = [
+            ['张三', '男', '25', '15666666666', '重庆市', '重庆大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
+            ['张挥洒', '男', '25', '15633333333', '北京市', '北京大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
+            ['王世安', '男', '26', '15655555555', '上海市', '上海大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
+            ['李光复', '男', '44', '15677777777', '杭州市', '杭州大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
+            ['赵构', '男', '78', '15688888888', '天津市', '天津大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
+        ];
+        $title = '这是一个测试.xlsx';
+        $excel = ExcelController::export_excel($data, $title, $header);
     }
 }

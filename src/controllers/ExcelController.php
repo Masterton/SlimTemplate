@@ -2,6 +2,16 @@
 
 namespace App\Controllers;
 
+use PHPExcel;
+//use PHPExcel_Reader_Excel2007;//读取 07版的Excel文件
+//use PHPExcel_Reader_Excel5;//读取 03版的Excel文件
+use PHPExcel_Writer_Excel5;//写入 03版的Excel文件
+use PHPExcel_Writer_Excel2007;//写入 07版的Excel文件
+use PHPExcel_IOFactory;//文件是以 03版的格式获取内容还是以07版的获取文件内容
+use PHPExcel_Cell;//把字母列转换为数字列 如：AA变为27
+use PHPExcel_Worksheet_Drawing;//把字母列转换为数字列 如：AA变为27
+use PHPExcel_Style_Alignment;
+
 /**
 * ExcelController
 * Excel文件的导入导出
@@ -27,10 +37,10 @@ class ExcelController extends ControllerBase
 		$PHPExcel = new PHPExcel();
 		
 		//判断excel 文件是什么类型
-		if($type == 1){
+		if ($type == 1) {
 			//excel 文件是03版
 			$reader = PHPExcel_IOFactory::createReader('Excel5');
-		}else if($type == 2){
+		} else if($type == 2) {
 			//excel 文件是07版
 			$reader = PHPExcel_IOFactory::createReader('Excel2007');
 		}
@@ -72,7 +82,7 @@ class ExcelController extends ControllerBase
      * @return
      *
      */
-    public function export_excel($data, $title, $header=[])
+    public static function export_excel($data, $title, $header=[])
     {
         //创建一个excel对象
 		$objExcel = new PHPExcel();
@@ -80,6 +90,10 @@ class ExcelController extends ControllerBase
 		$letter = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 		//设置每一列的title
 		//$header = array('姓名', '性别', '年龄', '电话', '地址', '学校');
+
+		// 设置所有单元格默认水平垂直居中
+		$objExcel->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		$objExcel->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 		
 		
 		//把每一列的title写入到excel表中
@@ -91,8 +105,49 @@ class ExcelController extends ControllerBase
 		for ($n = 2; $n < count($data)+2; $n++) {
 			$j = 0;
 			foreach ($data[$n-2] as $key => $value){
-				$objExcel->getActiveSheet()->setCellValue("$letter[$j]$n", "$value");//把数据写入对应的(行,列)中
-				$j++;
+				if (file_exists($value)) {
+					$objDrawing = new PHPExcel_Worksheet_Drawing();
+					//$objDrawing->setName('Photo');
+					//$objDrawing->setDescription('Photo');
+
+					// 设置图片路径，只能是本地图片
+					$objDrawing->setPath("$value");
+
+					// 设置图片宽高(设置其中一个，就会进行等比缩放)
+					$objDrawing->setHeight(133);
+					//$objDrawing->setWidth(95);
+
+					// 设置单元格的样式
+					// 内容自适应
+					//$objExcel->getActiveSheet()->getColumnDimension("$letter[$j]")->setAutoSize(true);
+					// 设置单元格宽度
+					$objExcel->getActiveSheet()->getColumnDimension("$letter[$j]")->setWidth(16);
+					// 设置单元格高度
+					$objExcel->getActiveSheet()->getRowDimension("$n")->setRowHeight(100);
+
+					// 设置单个单元格样式（字体、颜色等）
+					
+
+					// 设置页面边距为0.5厘米 (1英寸 = 2.54厘米)
+					//$margin = 1.78 / 2.54;
+					//$marginritht = 1 / 3.54
+					// 设置左边距
+					//$objExcel->getActiveSheet()->getPageMargins("$n")->setLeft($margin);
+					//$objExcel->getActiveSheet()->getPageMargins("$n")->setTop($margin);
+					//$objExcel->getActiveSheet()->getPageMargins("$n")->setBottom($margin);
+					//$objExcel->getActiveSheet()->getPageMargins("$n")->setRight($marginright);
+
+					// 设置插入的单元格
+					$objDrawing->setCoordinates("$letter[$j]$n");
+					$objDrawing->setWorksheet($objExcel->getActiveSheet());
+					$j++;
+				} else {
+					// 把数据写入对应的(行,列)中
+					$objExcel->getActiveSheet()->setCellValue("$letter[$j]$n", "$value");
+					// 设置单个单元格垂直居中
+					//$objExcel->getActiveSheet()->getStyle("$letter[$j]$n")->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+					$j++;
+				}
 			}
 		}
 		
