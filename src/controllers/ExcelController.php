@@ -29,7 +29,7 @@ class ExcelController extends ControllerBase
      * @return
      *
      */
-    public function import_excel()
+    public function import_excel($filePath, $type)
     {
         //设置excel表列的标头
 		$letter = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');

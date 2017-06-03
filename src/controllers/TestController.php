@@ -101,7 +101,7 @@ class TestController extends ControllerBase
             echo 'Message has been sent';
         }*/
         
-        $header = array('姓名', '性别', '年龄', '电话', '地址', '学校', '照片');
+        /*$header = array('姓名', '性别', '年龄', '电话', '地址', '学校', '照片');
         $data = [
             ['张三', '男', '25', '15666666666', '重庆市', '重庆大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
             ['张挥洒', '男', '25', '15633333333', '北京市', '北京大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
@@ -110,6 +110,43 @@ class TestController extends ControllerBase
             ['赵构', '男', '78', '15688888888', '天津市', '天津大学', '/webroot/zhengss/SlimTemplate/public/21a4462309f79052d1a480170ef3d7ca7bcbd564.jpg'],
         ];
         $title = '这是一个测试.xlsx';
-        $excel = ExcelController::export_excel($data, $title, $header);
+        $excel = ExcelController::export_excel($data, $title, $header);*/
+
+        //判断是否有文件上传
+        if(!empty($_FILES['file']['tmp_name'])){
+            //获取文件被上传后在服务端存储的临时文件名
+            $aa = $_FILES['file']['tmp_name'];
+
+            //读取文件中的内容为字符串
+            $str = file_get_contents($aa);
+
+            //获取文件名称
+            $name = $_FILES['file']['name'];
+            //获取文件的后缀
+            $extend = strrchr ($name, '.');
+
+            //判断文件是否属于Excel文件
+            if ($_FILES['file']['type'] == "application/vnd.ms-excel" || $_FILES['file']['type'] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+                
+                //判断文件后缀名是否属于 .xls或者 .xlsx
+                if ($extend == ".xls") {
+                    $bb = $this->Import($aa, 1);
+                    $bb = $this->inspect($bb);
+                    $this->save($bb);
+                    $ret = msg($bb, "导入成功");
+                } else if($extend == ".xlsx") {
+                    $bb = $this->Import($aa, 2);
+                    $bb = $this->inspect($bb);
+                    $this->save($bb);
+                    return "导入成功";
+                } else {
+                    return "必须是excel文件";
+                }
+            } else {
+                return "必须是excel文件";
+            }
+        } else {
+
+        }
     }
 }
