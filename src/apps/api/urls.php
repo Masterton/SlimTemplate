@@ -11,6 +11,7 @@ return [
             'auth' => false
         ],
     ],
+
     '/node_method[/]' => [
         'get' => [
             'handler' => 'App\Controllers\TestController:test_node_method',
@@ -18,6 +19,17 @@ return [
             'auth' => false
         ],
     ],
+
+    // 
+    '/test[/]' => [
+        'get' => [
+            'handler' => 'App\Controllers\TestController:test_node_method',
+            'name' => 'api_get_test',
+            'auth' => false
+        ],
+    ],
+
+    // 菜单接口
     '/menu[/]' => [
         'get' => [
             'handler' => "App\Controllers\MenuController:query_menu",
@@ -46,6 +58,188 @@ return [
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '删除菜单',
+        ],
+    ],
+
+    // 用户接口
+    '/user[/[uid]]' => [
+        'get' => [
+            'handler' => "App\Controllers\UserController:query_menu",
+            'name'    => 'api_get_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询用户',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\UserController:add_menu",
+            'name'    => 'api_post_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '添加用户',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\UserController:modify_menu",
+            'name'    => 'api_put_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改用户',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\UserController:delete_menu",
+            'name'    => 'api_delete_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除用户',
+        ],
+    ],
+
+    // 下载接口
+    '/download[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\DownloadController:query_menu",
+            'name'    => 'api_get_download',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '下载文件',
+        ],
+    ],
+
+    // 上传接口
+    '/upload[/]' => [
+        'post' => [
+            'handler' => "App\Controllers\UploadController:query_menu",
+            'name'    => 'api_post_upload',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '上传文件',
+        ],
+    ],
+
+    // 邮件接口
+    '/email[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\EmailController:query_menu",
+            'name'    => 'api_get_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询邮件',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\EmailController:add_menu",
+            'name'    => 'api_post_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '发送邮件',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\EmailController:modify_menu",
+            'name'    => 'api_put_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改邮件',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\EmailController:delete_menu",
+            'name'    => 'api_delete_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除邮件',
+        ],
+    ],
+
+    // 文章接口
+    '/article[/[aid]]' => [
+        'get' => [
+            'handler' => "App\Controllers\ArticalController:query_menu",
+            'name'    => 'api_get_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询文章',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\ArticalController:add_menu",
+            'name'    => 'api_post_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '新添文章',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\ArticalController:modify_menu",
+            'name'    => 'api_put_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改文章',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\ArticalController:delete_menu",
+            'name'    => 'api_delete_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除文章',
+        ],
+    ],
+
+    // 管理员接口
+    '/admin[/[aid]]' => [
+        'get' => [
+            'handler' => "App\Controllers\AdminController:query_menu",
+            'name'    => 'api_get_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询管理员',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\AdminController:add_menu",
+            'name'    => 'api_post_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '新添管理员',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\AdminController:modify_menu",
+            'name'    => 'api_put_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改管理员',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\AdminController:delete_menu",
+            'name'    => 'api_delete_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除管理员',
+        ],
+    ],
+
+    // 权限接口
+    '/jurisdiction[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\AdminController:query_menu",
+            'name'    => 'api_get_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询api接口列表',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\AdminController:add_menu",
+            'name'    => 'api_post_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '新添api接口',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\AdminController:modify_menu",
+            'name'    => 'api_put_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改api接口',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\AdminController:delete_menu",
+            'name'    => 'api_delete_user',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除api接口',
         ],
     ],
 ];

@@ -113,7 +113,7 @@ class TestController extends ControllerBase
         $excel = ExcelController::export_excel($data, $title, $header);*/
 
         //判断是否有文件上传
-        if(!empty($_FILES['file']['tmp_name'])){
+        /*if(!empty($_FILES['file']['tmp_name'])){
             //获取文件被上传后在服务端存储的临时文件名
             $aa = $_FILES['file']['tmp_name'];
 
@@ -147,6 +147,7 @@ class TestController extends ControllerBase
             }
         } else {
 
-        }
+        }*/
+        echo "fdsaf";
     }
 }
