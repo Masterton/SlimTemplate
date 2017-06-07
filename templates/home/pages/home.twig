@@ -1,35 +1,19 @@
 {% extends "home/layout.twig" %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<ul>
-	
-	{% for u in user %}
-	<li>{{ u.name }}</li>
-	<li>{{ u.qq }}</li>
-	<li>{{ u.sex }}</li>
-	<li>{{ u.phone }}</li>
+<div class="container">
+	<ul class="nav nav-tabs">
+	{% for menu in menus %}
+		<li role="presentation"><a href="#" style="height: 100px; line-height: 78px; font-size: 18px;">{{ menu }}</a></li>
 	{% endfor %}
-	<li>{{ base_path }}</li>
-</ul>
-<form method="post" action="http://slim.zhengss.com/api/test">
-	<input type="text" name="aa" onkeyup="pass()">
-	<input type="text" name="bb" class="qqq">
-	<input type="text" name="cc">
-	<input type="text" name="dd">
-	<input type="submit" name="submit" value="提交">
-</form>
-<span></span>
-{% endblock %}
-{% block foot_js %}
+	</ul>
+	<ul class="list-group">
+		<li class="list-group-item">Cras justo odio</li>
+		<li class="list-group-item">Dapibus ac facilisis in</li>
+		<li class="list-group-item">Morbi leo risus</li>
+		<li class="list-group-item">Porta ac consectetur ac</li>
+		<li class="list-group-item">Vestibulum at eros</li>
+	</ul>
+</div>
 
-	{{ parent() }}
-	<script type="text/javascript">
-		var txt = '45646545';
-		function pass() {
-			$.post("http://slim.zhengss.com/api/test",{suggest:txt},function(result){
-				$("span").html(result);
-				window.location.href = "http://slim.zhengss.com/view/home";
-			});
-		}
-	</script>
 {% endblock %}

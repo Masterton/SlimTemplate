@@ -26,6 +26,20 @@ class HomeController extends ControllerBase
         $aa = $request->getParams();
         $params = [
             'title' => '我是一个测试',
+            'menus' => [
+                '首页',
+                'PHP',
+                'JAVA',
+                '数据结构和算法',
+                '首页',
+                'PHP',
+                'JAVA',
+                '数据结构和算法',
+                '首页',
+                'PHP',
+                'JAVA',
+                '数据结构和算法',
+            ],
             'user' => [
                 [
                     'name' => 'master',
@@ -86,9 +100,9 @@ class HomeController extends ControllerBase
             'base_path' => $this->ci->get('settings')->get('base_path'),
         ];
         if (!empty($aa['page']) && $aa['page'] == 2) {
-            $result = $params;
-        } else {
             $result = $paramss;
+        } else {
+            $result = $params;
         }
         /*print_r("<pre>");
         print_r($this->ci);
