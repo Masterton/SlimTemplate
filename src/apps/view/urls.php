@@ -13,18 +13,19 @@ return [
             'op_name' => '视图测试',
         ],
     ],
+
+    // 上传页面
     '/upload[/]' => [
         'get'    => [
-            'handler' => function(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[]) {
-                $params = [];
-                return $this->twig->render($response, 'home/upload.twig', $params);
-            },
+            'handler' => 'App\Controllers\TestController:test_node_method',
             'name'    => 'view_upload',
             'auth'    => false,
             'op_class' => '上传接口',
             'op_name' => '文件上传界面',
         ],
     ],
+
+    // 错误页面
     '/400[/]' => [
         'get'    => [
             'handler' => function(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[]) {
@@ -73,5 +74,4 @@ return [
             'op_name' => '500错误',
         ],
     ],
-
 ];

@@ -34,6 +34,7 @@
             "App\\Migrations\\": "src/migrations/",
             "App\\Validators\\": "src/validators/",
             "App\\Controllers\\": "src/controllers/",
+            "App\\Handlers\\": "src/handlers/",
             "App\\Models\\": "src/models/",
             "App\\Tests\\Debug\\": "tests/Debug/",
             "App\\Tests\\Dev\\": "tests/Dev/"

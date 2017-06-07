@@ -11,14 +11,14 @@ return [
         
         // Renderer settings
         'renderer' => [
-            'template_path' => __DIR__ . '/../templates/',
+            'template_path' => __DIR__ . '/../../templates/',
         ],
 
         // Renderer settings
         'view' => [
-            'template_path' => __DIR__ . '/../templates',
+            'template_path' => __DIR__ . '/../../templates',
             'twig' => [
-                'cache' => __DIR__ . '/../cache/twig',
+                'cache' => __DIR__ . '/../../cache/twig',
                 'debug' => true,
                 'auto_reload' => true
             ]
