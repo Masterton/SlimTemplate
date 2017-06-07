@@ -1,0 +1,32 @@
+{% extends "admin/layout.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block head_css %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/admin/css/index.css">
+{% endblock %}
+{% block head_js %}
+    {{ parent() }}
+    <script type="text/javascript">
+    if(!window.GLOBAL) {
+        window.GLOBAL = {};
+    }
+    if(!GLOBAL.PAGE_ID) {
+        GLOBAL.PAGE_ID = 'admin-index';
+    }
+    </script>
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+    {{ parent() }}
+    <div class="container">
+        <div>test</div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+{% block foot_js %}
+    {{ parent() }}
+{% endblock %}
