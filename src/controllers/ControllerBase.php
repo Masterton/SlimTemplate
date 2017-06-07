@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @author Masterton <zhengcloud@foxmail.com>
  * @version 1.0
  * @since 1.0
- *
+ * @time 2017-5-20 13:51:47
  */
 class ControllerBase
 {

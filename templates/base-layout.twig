@@ -8,22 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {# No Baidu Siteapp #}
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="shortcut icon" href="{{ base_url() }}/favicon.ico">
+    <!-- <link rel="shortcut icon" href="{{ base_url() }}/favicon.ico"> -->
     {# Add to homescreen for Chrome on Android #}
     <meta name="mobile-web-app-capable" content="yes" />
-    <link rel="icon" sizes="192x192" type="image/png" href="{{ base_url() }}/favicon.png">
+    <!-- <link rel="icon" sizes="192x192" type="image/png" href="{{ base_url() }}/favicon.png"> -->
     {# Add to homescreen for Safari on iOS #}
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <link rel="apple-touch-icon-precomposed" href="{{ base_url() }}/favicon.png">
+    <!-- <link rel="apple-touch-icon-precomposed" href="{{ base_url() }}/favicon.png"> -->
     {# Tile icon for Win8 (144x144 + tile color) #}
-    <meta name="msapplication-TileImage" content="{{ base_url() }}/favicon.png" />
+    <!-- <meta name="msapplication-TileImage" content="{{ base_url() }}/favicon.png" /> -->
     <meta name="msapplication-TileColor" content="#0e90d2" />
     {# seo #}
     <meta name="keywords" content="keywords" />
     <meta name="description" content="description" />
-    <meta name="author" content="cloudkz.cn[gsw945]" />
+    <meta name="author" content="zhengss.com[zheng]" />
     <title>{% block title %}测试使用{% endblock %}</title>
     {% block head_css %}
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/bootstrap/css/bootstrap.min.css">
@@ -42,11 +42,11 @@
     {% block dialog %}{% endblock %}
     {% block header %}{% endblock %}
     {% block content %}
-        <ul class="nav nav-pills nav-stacked">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+    </ul>
     {% endblock %}
     {% block footer %}{% endblock %}
     {% block foot_js %}

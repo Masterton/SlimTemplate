@@ -63,6 +63,6 @@ return [
         'upload_folder' => 'upload',
         'upload_img_exts' => ['png', 'jpeg', 'jpg', 'gif', 'bmp'],
         'upload_data_ext' => ['swf'],
-        'base_path' => full_path(__DIR__ . '/../public')
+        'base_path' => full_path(__DIR__ . '/../../public')
     ],
 ];

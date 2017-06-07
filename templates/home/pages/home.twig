@@ -1,0 +1,14 @@
+{% extends "home/layout.twig" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<ul>
+	
+	{% for u in user %}
+	<li>{{ u.name }}</li>
+	<li>{{ u.qq }}</li>
+	<li>{{ u.sex }}</li>
+	<li>{{ u.phone }}</li>
+	{% endfor %}
+	<li>{{ base_path }}</li>
+</ul>
+{% endblock %}

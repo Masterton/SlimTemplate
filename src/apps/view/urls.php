@@ -5,8 +5,18 @@ return [
         'get'    => [
             'handler' => function(\Slim\Http\Request  $request, \Slim\Http\Response  $response, $args=[]) {
                 $params = [];
-                return $this->twig->render($response, 'test.twig', $params);
+                return $this->twig->render($response, 'home/pages/home.twig', $params);
             },
+            'name'    => 'view_test',
+            'auth'    => false,
+            'op_class' => '视图接口',
+            'op_name' => '视图测试',
+        ],
+    ],
+
+    '/home[/]' => [
+        'get'    => [
+            'handler' => 'App\Controllers\HomeController:index',
             'name'    => 'view_test',
             'auth'    => false,
             'op_class' => '视图接口',
