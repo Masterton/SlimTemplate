@@ -11,4 +11,25 @@
 	{% endfor %}
 	<li>{{ base_path }}</li>
 </ul>
+<form method="post" action="http://slim.zhengss.com/api/test">
+	<input type="text" name="aa" onkeyup="pass()">
+	<input type="text" name="bb" class="qqq">
+	<input type="text" name="cc">
+	<input type="text" name="dd">
+	<input type="submit" name="submit" value="提交">
+</form>
+<span></span>
+{% endblock %}
+{% block foot_js %}
+
+	{{ parent() }}
+	<script type="text/javascript">
+		var txt = '45646545';
+		function pass() {
+			$.post("http://slim.zhengss.com/api/test",{suggest:txt},function(result){
+				$("span").html(result);
+				window.location.href = "http://slim.zhengss.com/view/home";
+			});
+		}
+	</script>
 {% endblock %}

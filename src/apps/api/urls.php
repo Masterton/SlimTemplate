@@ -22,8 +22,8 @@ return [
 
     // 
     '/test[/]' => [
-        'get' => [
-            'handler' => 'App\Controllers\TestController:test_node_method',
+        'post' => [
+            'handler' => 'App\Controllers\HomeController:test',
             'name' => 'api_get_test',
             'auth' => false
         ],

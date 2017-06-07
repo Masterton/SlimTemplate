@@ -96,4 +96,12 @@ class HomeController extends ControllerBase
         //return $response->withJson($params);
         return $this->ci->get('twig')->render($response, 'home/pages/home.twig', $result);
     }
+
+    public function test(Request $request, Response $response, $args=[])
+    {
+        $params = $request->getParams();
+        /*var_dump($params);
+        exit;*/
+        return '保存成功';
+    }
 }
