@@ -17,16 +17,17 @@ class Word
 	/**
 	 * 导入word文档
 	 * @param $filePath 文件路径
-	 * @param $type word版本类型
+	 * @param $type word版本类型(Word2007, Word5)
 	 * @return $data 导入的数据
 	 */
 	public static function importWord($filePath, $type)
-	{	
-
+	{
+        $wordReader = IOFactory::createReader($type);
+        $PhpWord = $wordReader->load($filePath);
 	}
 
 	/**
-	 * 下载word文档
+	 * 下载word文档 (默认的只有一个表单)
 	 * @param $data 导出的数据
 	 * @param $title 导出的文件名
 	 * @param $header 导出问价你的标头信息
@@ -34,8 +35,6 @@ class Word
 	 */
 	public static function exportWord($data, $title, $header)
 	{
-		/*print_r("yes");
-		exit;*/
 		// 定义table样式
 		$styleTable = [
             'borderSize' => 8,
@@ -50,37 +49,68 @@ class Word
             'bgColor' => '66BBFF'
         ];
 
-        $styleCell = ['valign' => 'center'];//定义列样式
-        $fontStyle = ['bold' => true, 'align' => 'center'];//为第一行定义字体样式
-        //$phpWord->addTableStyle('GSP', $styleTable);//添加table样式
-        //$phpWord->addFontStyle('header', ['size' => 22, 'bold' => true, 'name' => 'Times New Roman']);//添加字体样式
-        //$section = $phpWord->addSection();//添加默认页
+        // 定义单元格样式
+        $styleCell = [
+        	'valign' => 'center'
+        ];
+        // 定义单元格字体样式
+        $fontStyle = [
+	        'bold' => true,
+	        'align' => 'center'
+        ];
+
+        // 定义标题字体样式
+        $headerStyle = [
+        	'size' => 22,
+        	'bold' => true,
+        	'name' => 'Times New Roman'
+        ];
 
 		$phpWord = new PhpWord();
 		
-		$phpWord->addTableStyle('GSP', $styleTable);//添加table样式
-        $phpWord->addFontStyle('header', ['size' => 22, 'bold' => true, 'name' => 'Times New Roman']);//添加字体样式
-        /*print_r("<pre>");
-        print_r($phpWord);
-        exit;*/
+		$phpWord->addTableStyle('WordTable', $styleTable); // 添加table样式
+        $phpWord->addFontStyle('header', $headerStyle); // 添加字体样式
         $section = $phpWord->addSection();//添加默认页
-        $headerTextRun = $section->addTextRun(['align' => 'center']);
-        $headerTextRun->addText('教师教育学院gsp素质拓展成绩表', 'header');
-        $section->addTextBreak(1);
+
+        //$phpWord->setDefaultFontName('仿宋'); // 设置全局字体
+        //$phpWord->setDefaultFontSize(16);     // 设置全局字号为3号
+
+
+        $headerTextRun = $section->addTextRun(['align' => 'center']); // 添加一行文本输入，可设置样式
+        $headerTextRun->addText('这是一个测试表', 'header'); // 添加文本
+
+        $section->addTextBreak(1); // 添加换行符，中间间隔多少行
+
         $nameTextRun = $section->addTextRun();
         $nameTextRun->addText('姓名:' . '张三' . '     班级:' . '三年一班' . '   年级:' . '一年级' . '  专业:' . '学前教育' . '  学号：' . '222');
-        $table = $section->addTable('GSP');
-        $table->addRow(400);
-        $table->addCell(1500, $styleCell)->addText('拓展平台', $fontStyle);
-        $table->addCell(1500, $styleCell)->addText('能力模块', $fontStyle);
-        $table->addCell(1500, $styleCell)->addText('参加项目', $fontStyle);
-        $table->addCell(1000, $styleCell)->addText('项目级别', $fontStyle);
-        $table->addCell(1500, $styleCell)->addText('等级或获奖情况', $fontStyle);
-        $table->addCell(1000, $styleCell)->addText('参加时间', $fontStyle);
-        $table->addCell(1000, $styleCell)->addText('获得学分', $fontStyle);
 
-        $xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        //$xmlWriter->save($output_file_path);//生成文件
+        $table = $section->addTable('WordTable'); // 添加table表
+
+        $table->addRow(400); // 添加一行并设置行高
+        for ($i = 0; $i < count($header); $i++) { 
+        	$table->addCell(1200, $styleCell)->addText($header[$i], $fontStyle); // 添加一列并设置列宽、样式，并添加信息
+        }
+
+        for ($a = 0; $a < count($data); $a++) { 
+	        $table->addRow(400);
+	        for ($b = 0; $b < count($data[$a]); $b++) { 
+	        	$table->addCell(1000, $styleCell)->addText($data[$a][$b], $fontStyle);
+	        }
+        }
+
+        //落款
+        $section->addTextBreak(10);
+
+        $luokuanTextRun1 = $section->addTextRun(['align' => 'right', 'bold' => true]);
+        $luokuanTextRun1->addText('阿里巴巴');
+        $section->addTextBreak(1);
+        $luokuanTextRun2 = $section->addTextRun(['align' => 'right', 'bold' => true]);
+        $luokuanTextRun2->addText(date('Y-m-d H:i:s'));
+        $section->addPageBreak(); // 添加分页符
+
+
+        $xmlWriter = IOFactory::createWriter($phpWord, 'Word2007');
+        //$xmlWriter->save($output_file_path); // 生成word文件
         $type = 'doc';
 		Download::download($title, $type);
 		$xmlWriter->save("php://output");//在浏览器下载文件
