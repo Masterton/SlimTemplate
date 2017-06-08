@@ -2,6 +2,16 @@
 
 namespace App\Handlers;
 
+use PHPExcel;
+//use PHPExcel_Reader_Excel2007;//读取 07版的Excel文件
+//use PHPExcel_Reader_Excel5;//读取 03版的Excel文件
+use PHPExcel_Writer_Excel5;//写入 03版的Excel文件
+use PHPExcel_Writer_Excel2007;//写入 07版的Excel文件
+use PHPExcel_IOFactory;//文件是以 03版的格式获取内容还是以07版的获取文件内容
+use PHPExcel_Cell;//把字母列转换为数字列 如：AA变为27
+use PHPExcel_Worksheet_Drawing;//把字母列转换为数字列 如：AA变为27
+use PHPExcel_Style_Alignment;
+
 /**
  * Excel Excel 表格操作模型（上传、下载）
  * @author Masterton <zhengcloud@foxmail.com>
@@ -13,11 +23,12 @@ class Excel
 {
 	/**
      * Excel 文件的导入
-     * @param 
-     * @return
+     * @param $filePath 文件路径
+     * @param $type Excel版本类型
+     * @return $data 导入的数据
      *
      */
-    public function import_excel($filePath, $type)
+    public static function import_excel($filePath, $type)
     {
         //设置excel表列的标头
 		$letter = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
@@ -142,23 +153,9 @@ class Excel
 		//创建excel输出对象
 		$write = new PHPExcel_Writer_Excel5($objExcel);
 		//$write = new PHPExcel_Writer_Excel2007($objExcel);
-		
-		//实现特定的指令如：Pragma: no-cache
-		header("Pragma: public");//?需要进一步查询资料
-		header("Expires: 0");//指定当前缓存的文档在什么时候被认为过期
-		
-		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");//禁用浏览器缓存
-		header("Content-Type: application/force-download");//设置为强制下载
-		header("Content-Type: application/vnd.ms-execl");//设置为xls文件
-		
-		/**
-		 * 设置下载
-		 * 
-		 */
-		header("Content-Type: application/octet-stream");//设置内容类型
-		header("Content-Type: application/download");//设置为下载
-		header("Content-Disposition: attachment; filename='$title'");//设置被下载的文件名
-		header("Content-Transfer-Encoding: binary");//设置传输方式
+
+		$type = 'xls';
+		Download::download($title, $type);
 		$write->save("php://output");//在浏览器下载文件
     }
 }

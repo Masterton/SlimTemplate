@@ -96,18 +96,36 @@ return [
     // 下载接口
     '/download[/]' => [
         'get' => [
-            'handler' => "App\Controllers\DownloadController:query_menu",
+            'handler' => "App\Controllers\ExcelController:download",
             'name'    => 'api_get_download',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '下载文件',
         ],
     ],
+    '/download/excel[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\ExcelController:download",
+            'name'    => 'api_get_download_excel',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '下载excel文件',
+        ],
+    ],
+    '/download/word[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\WordController:download",
+            'name'    => 'api_get_download_word',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '下载word文件',
+        ],
+    ],
 
     // 上传接口
     '/upload[/]' => [
         'post' => [
-            'handler' => "App\Controllers\UploadController:query_menu",
+            'handler' => "App\Controllers\UploadController:upload",
             'name'    => 'api_post_upload',
             'auth'    => true,
             'op_class' => 'api接口',
