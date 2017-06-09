@@ -33,7 +33,7 @@ class Upload
      * 文件块总个数
      * @var bool
      */
-    private $totalBolbNum;
+    private $totalBlobNum;
 
     /**
      * 文件名
@@ -44,16 +44,16 @@ class Upload
     /**
      * @param $uploadPath string
      * @param $tmpPath string
-     * @param $bolbNum bool
-     * @param $totalBolbNum bool
+     * @param $blobNum bool
+     * @param $totalBlobNum bool
      * @param $fileName string
      */
-    public function __construct($uploadPath, $tmpPath, $bolbNum, $totalBolbNum, $fileName)
+    public function __construct($uploadPath, $tmpPath, $blobNum, $totalBlobNum, $fileName)
     {
         $this->uploadPath = $uploadPath;
         $this->tmpPath = $tmpPath;
-        $this->bolbNum = $bolbNum;
-        $this->totalBolbNum = $totalBolbNum;
+        $this->blobNum = $blobNum;
+        $this->totalBlobNum = $totalBlobNum;
         $this->fileName = $fileName;
     }
 
@@ -66,10 +66,10 @@ class Upload
     public function sliceUpload()
     {
         $this->touchDir();
-        $filename = $this->uploadPath . '/' . $this->fileName . '__' . $this->bolbNum;
+        $filename = $this->uploadPath . '/' . $this->fileName . '__' . $this->blobNum;
         move_uploaded_file($this->tmpPath, $filename);
         $this->fileMerge();
-        return $this->apiReturn();
+        //return $this->apiReturn();
     }
 
     /**
@@ -78,13 +78,13 @@ class Upload
      */
     public function fileMerge()
     {
-        if ($this->bolbNum == $this->totalBolbNum) {
-            $bolb = '';
+        if ($this->blobNum == $this->totalBlobNum) {
+            $blob = '';
             for ($i = 1; $i <= $this->totalBlobNum; $i++) { 
-                $bolb .= file_get_contents($this->uploadPath . '/' . $this->fileName . '__' . $i);
+                $blob .= file_get_contents($this->uploadPath . '/' . $this->fileName . '__' . $i);
             }
-            file_put_contents($this->uploadPath . '/' . $this->fileName, $bolb);
-            $this->deleteFileBolb();
+            file_put_contents($this->uploadPath . '/' . $this->fileName, $blob);
+            $this->deleteFileBlob();
         }
     }
 
@@ -92,9 +92,9 @@ class Upload
      * 删除文件块
      *
      */
-    public function deleteFileBolb()
+    public function deleteFileBlob()
     {
-        for ($i = 1; $i < $this->totalBolbNum; $i++) { 
+        for ($i = 1; $i < $this->totalBlobNum; $i++) { 
             @unlink($this->uploadPath . '/' . $this->fileName . '__' . $i);
         }
     }
@@ -105,8 +105,8 @@ class Upload
      */
     public function apiReturn()
     {
-        if ($this->bolbNum == $this->totalBlobNum) {
-            if (file_exists($this->uploadPath . '/' . $this->fileName)) {
+        if ($this->blobNum == $this->totalBlobNum) {
+            if (file_exists($this->uploadPath . '/' . $this->fileName . '__' . $this->blobNum)) {
                 $ret = [
                     'status' => '2',
                     'msg' => 'success',
