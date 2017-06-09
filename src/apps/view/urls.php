@@ -27,7 +27,7 @@ return [
     // 上传页面
     '/upload[/]' => [
         'get'    => [
-            'handler' => 'App\Controllers\TestController:test_node_method',
+            'handler' => 'App\Controllers\WordController:index',
             'name'    => 'view_upload',
             'auth'    => false,
             'op_class' => '上传接口',

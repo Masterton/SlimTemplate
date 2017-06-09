@@ -133,6 +133,38 @@ return [
         ],
     ],
 
+    // word 接口
+    '/word[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\WordController:query_menu",
+            'name'    => 'api_get_word',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询邮件',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\WordController:readerWord",
+            'name'    => 'api_post_word',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '发送邮件',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\WordController:modify_menu",
+            'name'    => 'api_put_word',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改邮件',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\WordController:delete_menu",
+            'name'    => 'api_delete_word',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除邮件',
+        ],
+    ],
+
     // 邮件接口
     '/email[/]' => [
         'get' => [

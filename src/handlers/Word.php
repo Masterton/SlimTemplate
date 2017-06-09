@@ -20,10 +20,32 @@ class Word
 	 * @param $type word版本类型(Word2007, Word5)
 	 * @return $data 导入的数据
 	 */
-	public static function importWord($filePath, $type)
+	public static function importWord($filePath, $type="Word2007")
 	{
-        $wordReader = IOFactory::createReader($type);
-        $PhpWord = $wordReader->load($filePath);
+        $wordReader = IOFactory::createReader($type); // 新建一个对应版本的读取
+        $PhpWord = $wordReader->load($filePath); // 加载word文件
+        $section = $PhpWord->getSections(); // 获取默认页
+        $element = $section[0]->getElements();
+        $PhpWordSection = $element[0]->getPhpWord()->getSections();
+        $PhpWordElement = $PhpWordSection[0]->getElements();
+        $result = [];
+        foreach ($PhpWordElement as $key => $table) {
+            if ($table instanceof \PhpOffice\PhpWord\Element\Table) {
+                $PhpWordTableRows = $table->getRows();
+                foreach ($PhpWordTableRows as $row => $cells) {
+                    $rowContent = [];
+                    $PhpWordTableCells = $cells->getCells();
+                    foreach ($PhpWordTableCells as $keys => $cell) {
+                        $cellElements = $cell->getElements();
+                        $cellText = $cellElements[0]->getText(); // 获取的每个单元格填写的文本
+                        $rowContent[] = $cellText;
+                    }
+                    $result[] = $rowContent;
+                }
+            }
+            unset($table);
+        }
+        return $result;
 	}
 
 	/**
@@ -90,12 +112,14 @@ class Word
         for ($i = 0; $i < count($header); $i++) { 
         	$table->addCell(1200, $styleCell)->addText($header[$i], $fontStyle); // 添加一列并设置列宽、样式，并添加信息
         }
+        unset($header);
 
         for ($a = 0; $a < count($data); $a++) { 
 	        $table->addRow(400);
 	        for ($b = 0; $b < count($data[$a]); $b++) { 
 	        	$table->addCell(1000, $styleCell)->addText($data[$a][$b], $fontStyle);
 	        }
+            unset($data[$a]);
         }
 
         //落款
@@ -106,7 +130,7 @@ class Word
         $section->addTextBreak(1);
         $luokuanTextRun2 = $section->addTextRun(['align' => 'right', 'bold' => true]);
         $luokuanTextRun2->addText(date('Y-m-d H:i:s'));
-        $section->addPageBreak(); // 添加分页符
+        //$section->addPageBreak(); // 添加分页符
 
 
         $xmlWriter = IOFactory::createWriter($phpWord, 'Word2007');
