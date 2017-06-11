@@ -21,6 +21,7 @@ class WordController extends ControllerBase
     {
         $result = [
             'title' => 'word文件上传',
+            'base_path' => $this->ci->get('settings')->get('base_path'),
         ];
         return $this->ci->get('twig')->render($response, 'home/pages/list.twig', $result);
     }

@@ -28,7 +28,7 @@ class SlimUpload
 
         if (file_exists($temFilePath)) {
         	for ($a = 1; $a <= $totalBlobNum; $a++) { 
-        		$temFilePathBlob = $uploadPath . '/' . $fileName . '__' . $i;
+        		$temFilePathBlob = $uploadPath . '/' . $fileName . '__' . $a;
         		if (file_exists($temFilePathBlob)) {
         			$blobNum = $a;
         		} else {

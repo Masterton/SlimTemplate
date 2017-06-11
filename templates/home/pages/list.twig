@@ -39,6 +39,7 @@
     <input type="file" name="file" id="file">
     <!-- <input type="button" value="停止" id="stop"> -->
 </form>
+<video src="{{ base_url() }}/upload/纳米核心第01话 标清(270P).mp4" controls="controls" preload="preload"></video>
 <span></span>
 {% endblock %}
 {% block foot_js %}
@@ -46,29 +47,11 @@
 	<script>
 
 		var upload = new Upload();
-
+		var progress;
+        var progressObj = document.getElementById('finish');
 
 	    $("#file").change(function(){
 	    	upload.addFileAndSend(this);
-	    	/*console.log(this.files[0]);
-
-	    	var formData = new FormData();
-	    	formData.append("file",this.files[0]);
-			formData.append("blob_num",1);
-			formData.append("total_blob_num",5);
-			formData.append("file_name",this.files[0].name);
-
-			$.ajax({
-				type: "POST",
-				url: "http://slim.zhengss.com/api/upload",
-				processData: false,// 告诉jQuery不要去处理发送的数据
-				contentType: false,// 告诉jQuery不要去设置Content-Type请求头
-				data: formData,
-				success: function (result) {
-					//$("span").html(result);
-					console.log(result);
-				}
-			});*/
 	    });
 
 
@@ -77,16 +60,19 @@
 
 	    	var formData = new FormData();
 	        const LENGTH = 1024 * 1024;
-	        var start;
-	        var end;
 	        var blob;
 	        var blob_num = 1;
+	        var file;
+	        var total_blob_num;
+	        var name;
 
 	        //对外方法，传入文件对象
 	        this.addFileAndSend = function(that){
-	            var file = that.files[0];
+	            file = that.files[0];
+	            total_blob_num = Math.ceil(file.size / LENGTH);
+	            name = file.name;
 	            blob = cutFile(file, blob_num);
-	            sendFile(blob,file);
+	            sendFile(blob, blob_num, total_blob_num, name);
 	        }
 
 	        /**
@@ -95,8 +81,8 @@
 	         * @var blob_num 传递的是第几片
 	         */
 	        function cutFile(file, blob_num){
-	        	start = (blob_num-1) * LENGTH;
-	        	end = blob_num * LENGTH;
+	        	var start = (blob_num-1) * LENGTH;
+	        	var end = blob_num * LENGTH;
 	            var file_blob = file.slice(start, end);
 	            return file_blob;
 	        };
@@ -104,15 +90,17 @@
 	        /**
 	         * 发送文件信息
 	         * @var blob 切割下来的文件块
-	         * @var file 文件对象
+	         * @var blob_num 文件上传的当前块数
+	         * @var total_blob_num 文件总块数
+	         * @var name 文件名称
 	         *
 	         */
-	        function sendFile(blob, file) {
-	        	var total_blob_num = Math.ceil(file.size / LENGTH);
+	        function sendFile(blob, blob_num, total_blob_num, name) {
+	        	
 	            formData.append("file", blob);
 				formData.append("blob_num", blob_num);
 				formData.append("total_blob_num", total_blob_num);
-				formData.append("file_name", file.name);
+				formData.append("file_name", name);
 
 				$.ajax({
 					type: "POST",
@@ -124,9 +112,18 @@
 						//$("span").html(result);
 						//console.log(result);
 						if (result.status == 1) {
-							blob = cutFile(file, result.blob_num + 1);
-							sendFile(blob,file);
+							blob_num = parseInt(result.blobNum) + 1;
+
+							progress = Math.min(100,(blob_num/total_blob_num)* 100 ) +'%';
+							progressObj.style.width = progress;
+
+							blob = cutFile(file, blob_num);
+							sendFile(blob, blob_num, total_blob_num, name);
 						} else if (result.status == 2) {
+
+                    		progress = '100%';
+			                progressObj.style.width = progress;
+
 							alert('上传完成！');
 						}
 					}
