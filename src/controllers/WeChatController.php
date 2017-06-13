@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 use \EasyWeChat\Foundation\Application;
+use \EasyWeChat\Message\Text;
 use \App\Handlers\WeChat;
 
 /**
@@ -111,30 +112,75 @@ class WeChatController extends ControllerBase
     }
 
     /**
-	 * api/wechat post
-	 *
+	 * 接受微信服务器发送来的数据，并保存到本地数据库中 api/wechat post
+	 * 微信服务器把用户消息转到我们的自有服务器（这里就是我们服务器接受信息的接口）
 	 *
 	 */
     public function add_wechat(Request $request, Response $response, $args=[])
     {
-    	$params = $request->getParams();
+        // 配置信息
+        $options = [
+            // basics
+            'debug'  => true, // 测试的时候使用
+            'app_id' => $this->ci->get('settings')->get('test_appid'), // 应用ID
+            'secret' => $this->ci->get('settings')->get('test_secret'), // 应用凭证
+            'token'  => $this->ci->get('settings')->get('wx_token'), // 公众使用的token值
+            // 'aes_key' => null, // 可选
 
-    	$parsedBody = $request->getParsedBody();
-    	$Body = $request->getBody();
-    	$parsedHeader = $request->getHeaders();
-    	//$parsedBody = json_encode(json_decode($parsedBody, true);
-    	print_r($Body);
-    	print_r($parsedBody);
-    	exit;
+            // log
+            'log' => [
+                'level' => 'debug',
+                //'file'  => '/var/log/nginx/error.log', // XXX: 绝对路径！！！！
+            ],
+            //...
+        ];
 
-    	$text = '<xml>
-				<ToUserName><![CDATA[osKcv0xxhfx_aeNvEwk52LUkJ0Ns]]></ToUserName>
-				<FromUserName><![CDATA[Z888888816]]></FromUserName>
-				<CreateTime>12345678</CreateTime>
-				<MsgType><![CDATA[text]]></MsgType>
-				<Content><![CDATA[你好]]></Content>
-				</xml>';
-				return $text;
+        // 从项目实例中得到服务端应用实例。
+        $Application = new Application($options);
+
+        $server = $Application->server;
+        $server->setMessageHandler(function ($message) {
+            //return "您好！欢迎关注我!" . date("Y-m-d H:i:s");
+            switch ($message->MsgType) {
+                case 'event':
+                    return '收到事件消息';
+                    break;
+                case 'text':
+                    return '收到文字消息';
+                    break;
+                case 'image':
+                    return '收到图片消息';
+                    break;
+                case 'voice':
+                    return '收到语音消息';
+                    break;
+                case 'video':
+                    return '收到视频消息';
+                    break;
+                case 'location':
+                    return '收到坐标消息';
+                    break;
+                case 'link':
+                    return '收到链接消息';
+                    break;
+                // ... 其它消息
+                default:
+                    return '收到其它消息';
+                    break;
+            }
+        });
+
+        $return = $server->serve();
+
+        // 直接会用微信发来的消息
+        $message = $server->getMessage();
+        $ToUserName = $message->ToUserName;    // 接收方帐号（该公众号 ID）
+        $FromUserName = $message->FromUserName;  // 发送方帐号（OpenID, 代表用户的唯一标识）
+        $CreateTime = $message->CreateTime;    // 消息创建时间（时间戳）
+        $MsgId = $message->MsgId;         // 消息 ID（64位整型）
+
+        // 将响应输出
+        $return->send(); // Laravel 里请使用：return $response;
     }
 
     /**
