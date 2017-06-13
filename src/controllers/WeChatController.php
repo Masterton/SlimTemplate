@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use \Slim\Http\Request;
 use \Slim\Http\Response;
+use \EasyWeChat\Foundation\Application;
+use \App\Handlers\WeChat;
 
 /**
 * WeChatController
@@ -16,7 +18,7 @@ use \Slim\Http\Response;
 class WeChatController extends ControllerBase
 {
 	/**
-	 * 接收微信验证消息
+	 * 接收微信验证消息 api/wechat get
 	 *
 	 *
 	 *
@@ -32,7 +34,7 @@ class WeChatController extends ControllerBase
 
     	$test_appid = $this->ci->get('settings')->get('test_appid');
     	$test_secret = $this->ci->get('settings')->get('test_secret');
-    	$test_access_token = 'JLgCDif2xd3stDx9ONSPlLcSIM1TuVWaY1QPOVR43_6keHtchEgXWLbN0owU5-vwUx2XHvRjFxCtILz5exfF1evOA_N59xS2gwYTsWfEIsbsuR1pCgMjpOXkJtkFKCerHONhABAWDC';
+    	$test_access_token = '-6tnnFwbJAw9m5TI_IIvD4xjZiKyNukATRoS0rl_98rDJRR68OybG7bnqnoDq4-NlUtrY5CCGH289VP4WIwqGLmLLRT_3UHq3Q0zM-4kuk-KYM4Fve13udep841DzcxqBPWeAJAXLS';
 
     	$openid = 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns';
     	//$openid = 'osKcv06UlF_H2xNM74s3vMXhwOHE';
@@ -42,8 +44,7 @@ class WeChatController extends ControllerBase
 
 		// 设置URL和相应的选项
 		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret);
-		// 测试账号
-		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$test_appid."&secret=".$test_secret);
+		
 
 
 		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=".$access_token);
@@ -51,11 +52,14 @@ class WeChatController extends ControllerBase
 		// 获取用户OpenID列表
 		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/user/get?access_token=".$test_access_token."&next_openid=");
 		// 获取单个用户基本信息
-		curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$test_access_token."&openid=".$openid."&lang=zh_CN ");
+		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$test_access_token."&openid=".$openid."&lang=zh_CN ");
 
 
 
 		//curl_setopt($ch, CURLOPT_HEADER, 0);
+
+		// 测试账号
+		curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$test_appid."&secret=".$test_secret);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 		// 抓取URL并把它传递给浏览器
@@ -104,5 +108,151 @@ class WeChatController extends ControllerBase
 	      //开始接收微信消息
 	      return '验证失败';
 	    }
+    }
+
+    /**
+	 * api/wechat post
+	 *
+	 *
+	 */
+    public function add_wechat(Request $request, Response $response, $args=[])
+    {
+    	$params = $request->getParams();
+
+    	$parsedBody = $request->getParsedBody();
+    	$Body = $request->getBody();
+    	$parsedHeader = $request->getHeaders();
+    	//$parsedBody = json_encode(json_decode($parsedBody, true);
+    	print_r($Body);
+    	print_r($parsedBody);
+    	exit;
+
+    	$text = '<xml>
+				<ToUserName><![CDATA[osKcv0xxhfx_aeNvEwk52LUkJ0Ns]]></ToUserName>
+				<FromUserName><![CDATA[Z888888816]]></FromUserName>
+				<CreateTime>12345678</CreateTime>
+				<MsgType><![CDATA[text]]></MsgType>
+				<Content><![CDATA[你好]]></Content>
+				</xml>';
+				return $text;
+    }
+
+    /**
+	 * api/wechat put
+	 *
+	 *
+	 */
+    public function modify_wechat(Request $request, Response $response, $args=[])
+    {
+    	
+    }
+
+    /**
+	 * api/wechat delete
+	 *
+	 *
+	 */
+    public function delete_wechat(Request $request, Response $response, $args=[])
+    {
+    	
+    }
+
+    /**
+	 * api/wechat/send get
+	 *
+	 *
+	 */
+    public function sendWeChatMsg(Request $request, Response $response, $args=[])
+    {
+
+    	// 发送的文本消息
+    	$paramText = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'text' => [
+    			'content' => date("Y-m-d H:i:s") . "  你有一个待办事项",
+    		],
+    	];
+
+    	// 图片消息
+    	$paramImage = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'image' => [
+    			'media_id' => 'MEDIA_ID',
+    		],
+    	];
+
+    	// 语音消息
+    	$paramVoice = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'voice' => [
+    			'media_id' => 'MEDIA_ID',
+    		],
+    	];
+
+    	// 视频消息
+    	$paramVideo = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'video' => [
+				"media_id" => "MEDIA_ID",
+				"thumb_media_id" => "MEDIA_ID",
+				"title" => "TITLE",
+				"description" => "DESCRIPTION"
+    		],
+    	];
+
+    	// 音乐消息
+    	$paramMusic = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'music' => [
+				"title" => "MUSIC_TITLE",
+				"description" => "MUSIC_DESCRIPTION",
+				"musicurl" => "MUSIC_URL",
+				"hqmusicurl" => "HQ_MUSIC_URL",
+				"thumb_media_id" => "THUMB_MEDIA_ID"
+    		],
+    	];
+
+    	// 图文消息
+    	$paramNews = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'news' => [
+				'articles' => [
+					[
+						"title" => "Happy Day",
+						"description" => "Is Really A Happy Day",
+						"url" => "URL",
+						"picurl" => "PIC_URL"
+					],
+					[
+						"title" => "Happy Day",
+						"description" => "Is Really A Happy Day",
+						"url" => "URL",
+						"picurl" => "PIC_URL"
+					]
+				]
+    		],
+    	];
+
+    	// 图文消息(点击跳转查看)
+    	$paramMpnews = [
+    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
+    		'msgtype' => 'text',
+    		'mpnews' => [
+				"media_id" => "MEDIA_ID"
+    		],
+    	];
+
+
+    	$access_token = 'hKa9i1VCWPnwh5qPYAXWdLkgDbL4lUtw-OOrpcQXloFsxTS_PcbE_NV4he1u0svisS8CDIttzu-0XM0h4LmwGPLurjFGCYj8iEqJaJzi7ksg0kB92GLYuYbQWgeCmJkPLGMdAEAGBH';
+    	$url  = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=".$access_token;
+		$data = json_encode($paramText, JSON_UNESCAPED_UNICODE);
+
+		return WeChat::sendWeChatMessage($url, $data, $access_token);
     }
 }

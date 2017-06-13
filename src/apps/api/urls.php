@@ -324,4 +324,36 @@ return [
             'op_name' => '删除微信消息',
         ],
     ],
+
+    // 微信接口(发送信息)
+    '/wechat/send[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\WeChatController:sendWeChatMsg",
+            'name'    => 'api_get_wechat_send',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '发送微信信息',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\WeChatController:add_wechat",
+            'name'    => 'api_post_wechat_send',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '发送微信消息',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\WeChatController:modify_wechat",
+            'name'    => 'api_put_wechat_send',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '修改微信消息',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\WeChatController:delete_wechat",
+            'name'    => 'api_delete_wechat_send',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '删除微信消息',
+        ],
+    ],
 ];
