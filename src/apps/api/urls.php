@@ -29,6 +29,14 @@ return [
         ],
     ],
 
+    '/zip[/]' => [
+        'get' => [
+            'handler' => 'App\Controllers\ZipController:index',
+            'name' => 'api_get_zip',
+            'auth' => false
+        ],
+    ],
+
     // 菜单接口
     '/menu[/]' => [
         'get' => [
