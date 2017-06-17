@@ -70,34 +70,43 @@ return [
     ],
 
     // 用户接口
-    '/user[/[uid]]' => [
+    '/user[/]' => [
         'get' => [
-            'handler' => "App\Controllers\UserController:query_menu",
+            'handler' => "App\Controllers\UserController:queryUserAPI",
             'name'    => 'api_get_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '查询用户',
         ],
         'post' => [
-            'handler' => "App\Controllers\UserController:add_menu",
+            'handler' => "App\Controllers\UserController:addUserAPI",
             'name'    => 'api_post_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '添加用户',
         ],
         'put' => [
-            'handler' => "App\Controllers\UserController:modify_menu",
+            'handler' => "App\Controllers\UserController:modifyUserAPI",
             'name'    => 'api_put_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '修改用户',
         ],
         'delete' => [
-            'handler' => "App\Controllers\UserController:delete_menu",
+            'handler' => "App\Controllers\UserController:deleteUserAPI",
             'name'    => 'api_delete_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '删除用户',
+        ],
+    ],
+    '/user/personal[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\UserController:queryUserPersonalAPI",
+            'name'    => 'api_get_user_personal',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '查询个人信息',
         ],
     ],
 
@@ -238,30 +247,30 @@ return [
     ],
 
     // 管理员接口
-    '/admin[/[aid]]' => [
+    '/admin[/]' => [
         'get' => [
-            'handler' => "App\Controllers\AdminController:query_menu",
+            'handler' => "App\Controllers\AdminController:queryAdmin",
             'name'    => 'api_get_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '查询管理员',
         ],
         'post' => [
-            'handler' => "App\Controllers\AdminController:add_menu",
+            'handler' => "App\Controllers\AdminController:addAdmin",
             'name'    => 'api_post_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '新添管理员',
         ],
         'put' => [
-            'handler' => "App\Controllers\AdminController:modify_menu",
+            'handler' => "App\Controllers\AdminController:modifyAdmin",
             'name'    => 'api_put_user',
             'auth'    => true,
             'op_class' => 'api接口',
             'op_name' => '修改管理员',
         ],
         'delete' => [
-            'handler' => "App\Controllers\AdminController:delete_menu",
+            'handler' => "App\Controllers\AdminController:deleteAdmin",
             'name'    => 'api_delete_user',
             'auth'    => true,
             'op_class' => 'api接口',

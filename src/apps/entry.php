@@ -21,6 +21,11 @@ return [
         'prefix' => '/db',
         'urls' => require __DIR__ . '/db/urls.php'
     ],
+    // 后台接口
+    'admin' => [
+        'prefix' => '/admin',
+        'urls' => require __DIR__ . '/admin/urls.php'
+    ],
     /*'db' => [
         'prefix' => '/db',
         'urls' => [
