@@ -6,15 +6,22 @@ return [
         'prefix' => '/api',
         'urls' => require __DIR__ . '/api/urls.php'
     ],
+    // 视图接口
     'view' => [
         'prefix' => '/view',
         'urls' => require __DIR__ . '/view/urls.php'
     ],
+    // 主页接口
     'home' => [
         'prefix' => '/',
         'urls' => require __DIR__ . '/home/urls.php'
     ],
+    // 数据库迁移接口
     'db' => [
+        'prefix' => '/db',
+        'urls' => require __DIR__ . '/db/urls.php'
+    ],
+    /*'db' => [
         'prefix' => '/db',
         'urls' => [
             '/up[/[{table:\w+}[/]]]' => [
@@ -32,5 +39,5 @@ return [
                 ]
             ],
         ]
-    ],
+    ],*/
 ];

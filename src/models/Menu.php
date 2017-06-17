@@ -3,7 +3,12 @@
 namespace App\Models;
 
 /**
-* Menu Model
+* Menu model
+* @author Masterton <zhengcloud@foxmail.com>
+* @version 0.0.1
+* @since 1.0
+* @time 2017-6-17 11:24:48
+*
 */
 class Menu extends Base
 {
