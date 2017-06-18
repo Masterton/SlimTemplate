@@ -1,5 +1,5 @@
 {% extends "admin/layout.twig" %}
-{% block title %}{{ parent() }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block head_css %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/admin/css/index.css">
@@ -20,9 +20,9 @@
 {% endblock %}
 {% block content %}
     {{ parent() }}
-    <div class="container">
+    <!-- <div class="container">
         <div>test</div>
-    </div>
+    </div> -->
 {% endblock %}
 {% block footer %}
     {{ parent() }}

@@ -23,8 +23,10 @@ class LoginController extends ControllerBase
      */
     public function index(Request $request, Response $response, $args=[])
     {
-        $result = [];
-        return $this->ci->get('twig')->render($response, 'home/pages/home.twig', $result);
+        $result = [
+            'title' => '登录界面',
+        ];
+        return $this->ci->get('twig')->render($response, 'admin/pages/login.twig', $result);
     }
 
     /**

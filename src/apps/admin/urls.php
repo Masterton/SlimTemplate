@@ -1,25 +1,25 @@
 <?php
 return [
     // 登录和登出
-    '[/login]' => [
+    '/login[/]' => [
         'get' => [
-            'handler' => 'App\Views\LoginController:index',
+            'handler' => 'App\Controllers\LoginController:index',
             'name' => 'admin_get_login',
             'auth' => false,
             'op_class' => '后台',
             'op_name' => '登录界面',
         ],
         'post' => [
-            'handler' => 'App\Views\LoginController:index',
+            'handler' => 'App\Controllers\LoginController:login',
             'name' => 'admin_post_login',
             'auth' => false,
             'op_class' => '后台',
             'op_name' => '用户登录',
         ],
     ],
-    '[/logout]' => [
+    '/logout[/]' => [
         'post' => [
-            'handler' => 'App\Views\LoginController:index',
+            'handler' => 'App\Controllers\LogoutController:logout',
             'name' => 'admin_post_logout',
             'auth' => false,
             'op_class' => '后台',

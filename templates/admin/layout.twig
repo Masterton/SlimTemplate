@@ -5,18 +5,8 @@
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/metisMenu/metisMenu.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/admin/css/layout.css">
-    <style type="text/css">
-        .logined-user {
-            padding-right: 0.5em;
-        }
-        .page-header {
-            margin: 10px 0 16px 0;
-        }
-        .sidebar ul li a.current-active {
-            background-color: #d2d2d2;
-        }
-    </style>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ base_url() }}/assets/admin/css/layout.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/layout/layout.css">
 {% endblock %}
 {% block head_js %}
     {{ parent() }}
@@ -33,22 +23,54 @@
     {{ parent() }}
 {% endblock %}
 {% block header %}
-    {# {% include 'admin/_common/modal-password.twig' ignore missing %} #}
     {{ parent() }}
+    {% include 'admin/pages/header.twig' ignore missing %}
 {% endblock %}
 {% block content %}
     {{ parent() }}
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
-</ul>
-            <!-- /.navbar-static-side -->
-        </nav>
+        <div id="sidebar">
+            <div class="sidebar-fold">|||</div>
+            <div class="sidebar-scope">
+                <span class="sidebar-title-icon"></span>
+                <span class="sidebar-title-text">用户管理</span>
+            </div>
+            <ul class="sidebar-trans">
+                <li class="sidebar-trans-nav">
+                    <a href="">
+                        <div class="sidebar-trans-icon">
+                            <span></span>
+                        </div>
+                        <span class="sidebar-title-text">域名</span>
+                    </a>
+                </li>
+                <li class="sidebar-trans-nav">
+                    <a href="">
+                        <div class="sidebar-trans-icon">
+                            <span></span>
+                        </div>
+                        <span class="sidebar-title-text">域名</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-scope">
+                <span class="sidebar-title-icon"></span>
+                <span class="sidebar-title-text">文章管理</span>
+            </div>
+            <div class="sidebar-scope">
+                <span class="sidebar-title-icon"></span>
+                <span class="sidebar-title-text">菜单管理</span>
+            </div>
+            <div class="sidebar-scope">
+                <span class="sidebar-title-icon"></span>
+                <span class="sidebar-title-text">资源管理</span>
+            </div>
+            <div class="sidebar-scope">
+                <span class="sidebar-title-icon"></span>
+                <span class="sidebar-title-text">公告管理</span>
+            </div>
+        </div>
 
         <!-- Page Content -->
         <div id="page-wrapper">
@@ -56,7 +78,7 @@
                 {% block page_content %}
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
+                        <span>gfggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
