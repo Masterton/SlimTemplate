@@ -17,30 +17,16 @@ class UploadController extends ControllerBase
 {
 	public function upload(Request $request, Response $response, $args=[])
 	{
-		$params = $request->getParams(); // 获取参数
 		$file = $request->getUploadedFiles()['files']; // 获取上传的文件
-
-		$blobNum = array_get($params, 'blob_num'); // 当前文件块数
-		$totalBlobNum = array_get($params, 'total_blob_num'); // 总的文件快熟
-		$fileName = array_get($params, 'file_name'); // 文件名称
 
 		//获取上传保存的路径和文件夹，并合并为完整文件夹的路径
         $base_path = $this->ci->get('settings')['base_path'];
         $upload_folder = $this->ci->get('settings')['upload_folder'];
         $folder = merge_path($base_path, $upload_folder); // 存放文件的目录
 
-        print_r($file);
-        exit;
+		$result = SlimUpload::upload($folder, $file[0]);
+		$result['date'] = date("Y-m-d H:i:s");
 
-        array_push($params, '111111');
-        return $response->withJson($params);
-
-        /*print_r($file);
-        print_r($params);
-        exit;
-
-		$result = SlimUpload::upload($folder, $file, $blobNum, $totalBlobNum, $fileName);
-
-		return $response->withJson($result);*/
+		return $response->withJson($result);
 	}
 }

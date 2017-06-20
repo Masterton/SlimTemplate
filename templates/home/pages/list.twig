@@ -32,7 +32,8 @@
 <input id="fileupload" type="file" name="files[]" data-url="http://slim.zhengss.com/api/upload" multiple>
 {% endblock %}
 {% block foot_js %}
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	{{ parent() }}
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
 	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/jquery.iframe-transport.js"></script>
 	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/jquery.fileupload.js"></script>
@@ -47,10 +48,12 @@
 		        },
 		        progressall: function (e, data) {
 			        var progress = parseInt(data.loaded / data.total * 100, 10);
-			        console.log(progress);
 			        var bb = progress + '%';
 			        $("#finish").css({"width":bb});
 			        $("#finish").text(bb);
+			        if (progress == 100) {
+			        	alert('上传完毕！！！');
+			        }
 			    }
 		    });
 
