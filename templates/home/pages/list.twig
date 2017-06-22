@@ -29,7 +29,7 @@
 <div id="progress">
     <div id="finish" style="width: 0%;" progress="0"></div>
 </div>
-<input id="fileupload" type="file" name="files[]" data-url="http://slim.zhengss.com/api/upload" multiple>
+<input id="fileupload" type="file" name="files[]" multiple>
 {% endblock %}
 {% block foot_js %}
 	{{ parent() }}
@@ -38,8 +38,7 @@
 	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/jquery.iframe-transport.js"></script>
 	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/jquery.fileupload.js"></script>
 	<script type="text/javascript">
-		$(function () {
-		    $('#fileupload').fileupload({
+		    /*$('#fileupload').fileupload({
 		        dataType: 'json',
 		        done: function (e, data) {
 		            $.each(data.result.files, function (index, file) {
@@ -55,9 +54,27 @@
 			        	alert('上传完毕！！！');
 			        }
 			    }
+		    });*/
+	    	$('#fileupload').fileupload({
+		        url: 'http://slim.zhengss.com/api/upload',
+			    sequentialUploads: true,
+			    dataType: 'json',
+			    done: function (e, data) {
+		            $.each(data.result.files, function (index, file) {
+		                $('<p/>').text(file.name).appendTo(document.body);
+		            });
+		        },
+		        progressall: function (e, data) {
+		        	console.log(data);
+			        var progress = parseInt(data.loaded / data.total * 100, 10);
+			        var bb = progress + '%';
+			        $("#finish").css({"width":bb});
+			        $("#finish").text(bb);
+			        if (progress == 100) {
+			        	alert('上传完毕！！！');
+			        }
+			    }
 		    });
-
-		});
 	</script>
 	
 {% endblock %}
