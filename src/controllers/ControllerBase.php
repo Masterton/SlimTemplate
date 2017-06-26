@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class ControllerBase
 {
-    protected $ci;
+    protected $container;
     /** @var Builder $db */
     protected $db;
 
     public function __construct(\Interop\Container\ContainerInterface $ci)
     {
-        $this->ci = $ci;
+        $this->container = $ci;
         // 加载DB容器
         $this->db = $ci->get('db');
     }
