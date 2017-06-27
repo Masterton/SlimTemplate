@@ -46,7 +46,7 @@ return [
             'host' => 'localhost',
             'database' => 'zheng',
             'username' => 'zheng',
-            'password' => 'hfjhs$#$37687HFDifa',
+            'password' => 'Zyp$%zheng',
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',
             'prefix'    => '',
@@ -66,9 +66,22 @@ return [
         'base_path' => full_path(__DIR__ . '/../../public'),
 
         // wechart
-        'appid' => 'wxd8d987e71f0a31c3',
-        'secret' => '',
-        'test_appid' => 'wx2292e1ed58c06f1e',
-        'test_secret' => '',
+        'wechat'=>[
+            'app_id'  => 'wx2292e1ed58c06f1e',// AppID
+            'secret'  => '1e0768b4aef0b62b120e4a5c88e35856',// AppSecret
+            'token'   => 'weixin',// Token
+            'aes_key' => '8eu5h8plE3lLgaW8n1BaBWj4dqipAmDv1W8CUfuQMVo',// EncodingAESKey，安全模式下请一定要填写！！
+            'oauth' => [
+                'scopes'   => ['snsapi_userinfo'],
+                'callback' => '/oauth_callback',
+            ],
+            'payment' => [
+                'merchant_id'        => 'your-mch-id',
+                'key'                => 'key-for-signature',
+                'cert_path'          => 'path/to/your/cert.pem', // XXX: 绝对路径！！！！
+                'key_path'           => 'path/to/your/key',      // XXX: 绝对路径！！！！
+            ],
+
+        ]
     ],
 ];

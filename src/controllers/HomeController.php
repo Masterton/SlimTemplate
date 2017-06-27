@@ -66,7 +66,7 @@ class HomeController extends ControllerBase
                     'phone' => '18888888888',
                 ],
             ],
-            'base_path' => $this->ci->get('settings')->get('base_path'),
+            'base_path' => $this->container->get('settings')->get('base_path'),
         ];
 
         $paramss = [
@@ -97,7 +97,7 @@ class HomeController extends ControllerBase
                     'phone' => '18888888888',
                 ],
             ],
-            'base_path' => $this->ci->get('settings')->get('base_path'),
+            'base_path' => $this->container->get('settings')->get('base_path'),
         ];
         if (!empty($aa['page']) && $aa['page'] == 2) {
             $result = $paramss;
@@ -108,7 +108,19 @@ class HomeController extends ControllerBase
         print_r($this->ci);
         exit;*/
         //return $response->withJson($params);
-        return $this->ci->get('twig')->render($response, 'home/pages/home.twig', $result);
+        return $this->container->get('twig')->render($response, 'home/pages/home.twig', $result);
+    }
+
+    /**
+     * 主页显示
+     * @param $data 参数
+     * @return $result 结果
+     *
+     */
+    public function login(Request $request, Response $response, $args=[])
+    {
+        $params = [];
+        return $this->container->get('twig')->render($response, 'home/pages/login.twig', $params);
     }
 
     public function test(Request $request, Response $response, $args=[])

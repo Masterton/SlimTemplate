@@ -24,53 +24,77 @@ class WeChatController extends ControllerBase
 	 *
 	 *
 	 */
-    public  function receive(Request $request, Response $response, $args=[])
+    public function receive(Request $request, Response $response, $args=[])
     {
-    	$params = $request->getParams();
+    	// 查看关注公众号的用户列表openid
+        $config = $this->container->get('settings')['wechat'];
+        $app = new Application($config);
 
-    	$appid = $this->ci->get('settings')->get('appid');
-    	$secret = $this->ci->get('settings')->get('secret');
-    	$access_token = 'TVWkM6N-t1HCoPQeRQlVkGV2ms3u7k3x3cT1NEsHw1touzYku0QUZEnSBpiPaSn0U6zFHaPK3sp2fZgF1ZSvjDf90C-mdzVudSFUh88GhmuG5e10OVc3f55H4-FfSexvIPBjAEAAHT';
+        $menu = $app->menu;
 
+        $buttons = [
+            [
+                "type" => "click",
+                "name" => "今日歌曲",
+                "key"  => "V1001_TODAY_MUSIC"
+            ],
+            [
+                "name"       => "菜单",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "搜索",
+                        "url"  => "http://www.zhengss.com/"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "视频",
+                        "url"  => "http://slim.zhengss.com/"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "赞一下我们",
+                        "key" => "V1001_GOOD"
+                    ],
+                ],
+            ],
+            [
+                "name"       => "菜单",
+                "sub_button" => [
+                    [
+                        "type" => "view",
+                        "name" => "搜索",
+                        "url"  => "http://www.zhengss.com/"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "视频",
+                        "url"  => "http://slim.zhengss.com/"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "赞一下我们",
+                        "key" => "V1001_GOOD"
+                    ],
+                ],
+            ],
+        ];
 
-    	$test_appid = $this->ci->get('settings')->get('test_appid');
-    	$test_secret = $this->ci->get('settings')->get('test_secret');
-    	$test_access_token = '-6tnnFwbJAw9m5TI_IIvD4xjZiKyNukATRoS0rl_98rDJRR68OybG7bnqnoDq4-NlUtrY5CCGH289VP4WIwqGLmLLRT_3UHq3Q0zM-4kuk-KYM4Fve13udep841DzcxqBPWeAJAXLS';
+        $matchRule = [
+            "tag_id" => "2",
+            "sex" => "1",
+            "country" => "中国",
+            "province" => "广东",
+            "city" => "广州",
+            "client_platform_type" => "2",
+            "language" => "zh_CN"
+        ];
+        //$menu->destroy();
+        //$menu->add($buttons, $matchRule);
 
-    	$openid = 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns';
-    	//$openid = 'osKcv06UlF_H2xNM74s3vMXhwOHE';
-
-    	// 创建一个新cURL资源
-		$ch = curl_init();
-
-		// 设置URL和相应的选项
-		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$secret);
-		
-
-
-		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/getcallbackip?access_token=".$access_token);
-		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=".$access_token);
-		// 获取用户OpenID列表
-		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/user/get?access_token=".$test_access_token."&next_openid=");
-		// 获取单个用户基本信息
-		//curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$test_access_token."&openid=".$openid."&lang=zh_CN ");
-
-
-
-		//curl_setopt($ch, CURLOPT_HEADER, 0);
-
-		// 测试账号
-		curl_setopt($ch, CURLOPT_URL, "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$test_appid."&secret=".$test_secret);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-		// 抓取URL并把它传递给浏览器
-		$output = curl_exec($ch);
-
-		// 关闭cURL资源，并且释放系统资源
-		curl_close($ch);
-		$output = json_decode($output, true);
-		print_r("<pre>");
-		print_r($output);
+        print_r("<pre>");
+        print_r($menu->all());
+        exit;
     }
 
     /**
@@ -210,95 +234,34 @@ class WeChatController extends ControllerBase
 	 */
     public function sendWeChatMsg(Request $request, Response $response, $args=[])
     {
+        // 群发消息
+        /*$config = $this->container->get('settings')['wechat'];
+    	$app = new Application($config);
+        $broadcast = $app->broadcast;
 
-    	// 发送的文本消息
-    	$paramText = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'text' => [
-    			'content' => date("Y-m-d H:i:s") . "  你有一个待办事项",
-    		],
-    	];
+        $result = $broadcast->sendText("fsadfsdafsdafsad");
+        var_dump($result);*/
 
-    	// 图片消息
-    	$paramImage = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'image' => [
-    			'media_id' => 'MEDIA_ID',
-    		],
-    	];
+        // 发送模板消息
+        /*$userId = 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns';
+        $templateId = 'x9g-tb0FiWDBrvMRWgOTROOcGlg67xAjDbqetjUClQQ';
+        $url = 'http://slim.zhengss.com';
+        $data = array(
+            "first"  => "恭喜你购买成功！",
+            "name"   => "巧克力",
+            "price"  => "39.8元",
+            "remark" => "欢迎再次购买！",
+        );
+        $config = $this->container->get('settings')['wechat'];
+        $app = new Application($config);
+        $notice = $app->notice;
 
-    	// 语音消息
-    	$paramVoice = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'voice' => [
-    			'media_id' => 'MEDIA_ID',
-    		],
-    	];
-
-    	// 视频消息
-    	$paramVideo = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'video' => [
-				"media_id" => "MEDIA_ID",
-				"thumb_media_id" => "MEDIA_ID",
-				"title" => "TITLE",
-				"description" => "DESCRIPTION"
-    		],
-    	];
-
-    	// 音乐消息
-    	$paramMusic = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'music' => [
-				"title" => "MUSIC_TITLE",
-				"description" => "MUSIC_DESCRIPTION",
-				"musicurl" => "MUSIC_URL",
-				"hqmusicurl" => "HQ_MUSIC_URL",
-				"thumb_media_id" => "THUMB_MEDIA_ID"
-    		],
-    	];
-
-    	// 图文消息
-    	$paramNews = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'news' => [
-				'articles' => [
-					[
-						"title" => "Happy Day",
-						"description" => "Is Really A Happy Day",
-						"url" => "URL",
-						"picurl" => "PIC_URL"
-					],
-					[
-						"title" => "Happy Day",
-						"description" => "Is Really A Happy Day",
-						"url" => "URL",
-						"picurl" => "PIC_URL"
-					]
-				]
-    		],
-    	];
-
-    	// 图文消息(点击跳转查看)
-    	$paramMpnews = [
-    		'touser' => 'osKcv0xxhfx_aeNvEwk52LUkJ0Ns',
-    		'msgtype' => 'text',
-    		'mpnews' => [
-				"media_id" => "MEDIA_ID"
-    		],
-    	];
-
-
-    	$access_token = 'hKa9i1VCWPnwh5qPYAXWdLkgDbL4lUtw-OOrpcQXloFsxTS_PcbE_NV4he1u0svisS8CDIttzu-0XM0h4LmwGPLurjFGCYj8iEqJaJzi7ksg0kB92GLYuYbQWgeCmJkPLGMdAEAGBH';
-    	$url  = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=".$access_token;
-		$data = json_encode($paramText, JSON_UNESCAPED_UNICODE);
-
-		return WeChat::sendWeChatMessage($url, $data, $access_token);
+        $result = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
+        $result = json_decode($result, true);
+        if ($result['errcode'] == 0) {
+            return "发送成功";
+        } else {
+            return "发送失败";
+        }*/
     }
 }
