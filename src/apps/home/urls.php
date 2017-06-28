@@ -14,11 +14,11 @@ return [
     // 文章页
     'article[/]' => [
         'get'    => [
-            'handler' => 'App\Controllers\HomeController:article',
+            'handler' => 'App\Controllers\HomeArticleController:index',
             'name'    => 'home_article',
             'auth'    => true,
             'op_class' => '前台接口',
-            'op_name' => '文章页',
+            'op_name' => '文章详情页',
         ],
     ],
 ];
