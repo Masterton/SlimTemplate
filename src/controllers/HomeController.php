@@ -25,7 +25,7 @@ class HomeController extends ControllerBase
     {
         $aa = $request->getParams();
         $params = [
-            'title' => '我是一个测试',
+            'title' => '主页',
             'menus' => [
                 '首页',
                 'PHP',
@@ -108,7 +108,7 @@ class HomeController extends ControllerBase
         print_r($this->ci);
         exit;*/
         //return $response->withJson($params);
-        return $this->container->get('twig')->render($response, 'home/pages/home.twig', $result);
+        return $this->container->get('twig')->render($response, 'home/pages/index.twig', $result);
     }
 
     /**
@@ -117,10 +117,10 @@ class HomeController extends ControllerBase
      * @return $result 结果
      *
      */
-    public function login(Request $request, Response $response, $args=[])
+    public function article(Request $request, Response $response, $args=[])
     {
         $params = [];
-        return $this->container->get('twig')->render($response, 'home/pages/login.twig', $params);
+        return $this->container->get('twig')->render($response, 'home/pages/single.twig', $params);
     }
 
     public function test(Request $request, Response $response, $args=[])

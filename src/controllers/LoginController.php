@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use \App\Models\User;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 
@@ -16,7 +17,7 @@ class LoginController extends ControllerBase
 {
 
     /**
-     * 显示登录界面 /login get
+     * 显示后台登录界面 /admin/login get
      * @param $data 参数
      * @return $result 结果
      *
@@ -26,22 +27,38 @@ class LoginController extends ControllerBase
         $result = [
             'title' => '登录界面',
         ];
-        return $this->ci->get('twig')->render($response, 'admin/pages/login.twig', $result);
+        return $this->container->get('twig')->render($response, 'admin/pages/login.twig', $result);
     }
 
     /**
-     * 用户登录 /api/login post
+     * 用户登录 /admin/login post
      * @param $user 用户名
      * @param $password 密码
      *
      */
     public function login(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params['username']) && !empty($params['password'])) {
+            $user = User::where('user', $params['username'])->first();
+            if (!empty($user)) {
+                if ($user['password'] == $params['password']) {
+                    $_SESSION['user_info'] = $user;
+                    $ret = msg([], '登录成功', 0, '/admin/home');
+                } else {
+                    $ret = msg([], '用户名或密码错误', 1);
+                }
+            } else {
+                $ret = msg([], '用户名或密码错误', 1);
+            }
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
-     * 用户登出 /api/logout post
+     * 用户登出 /admin/logout post
      * @param $id 用户id
      * @param $.. 其他参数
      *

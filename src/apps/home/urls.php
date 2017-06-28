@@ -11,14 +11,14 @@ return [
             'op_name' => '主页',
         ],
     ],
-    // 主页
-    'login[/]' => [
+    // 文章页
+    'article[/]' => [
         'get'    => [
-            'handler' => 'App\Controllers\HomeController:login',
-            'name'    => 'home_login',
+            'handler' => 'App\Controllers\HomeController:article',
+            'name'    => 'home_article',
             'auth'    => true,
             'op_class' => '前台接口',
-            'op_name' => '登录',
+            'op_name' => '文章页',
         ],
     ],
 ];

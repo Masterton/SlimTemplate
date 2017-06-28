@@ -23,6 +23,21 @@ class AdminHomeController extends ControllerBase
      */
     public function index(Request $request, Response $response, $args=[])
     {
-
+        $result = [
+            'title' => '后台主页',
+        ];
+        return $this->container->get('twig')->render($response, 'admin/pages/index.twig', $result);
+        // 判断是否登录
+        /*if (empty($_SESSION['user_info'])) {
+            print_r($_SESSION['user_info']);
+            exit;
+            return $response->withRedirect('/admin/login')->withStatus(301);
+        } else {
+            $result = [
+                'title' => '后台主页',
+                'user_info' => $_SESSION['user_info']
+            ];
+            return $this->container->get('twig')->render($response, 'admin/pages/index.twig', $result);
+        }*/
     }
 }
