@@ -2,7 +2,7 @@
 
 return [
     // 主页
-    '[/]' => [
+    '' => [
         'get'    => [
             'handler' => 'App\Controllers\HomeController:index',
             'name'    => 'home_index',

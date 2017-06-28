@@ -60,19 +60,19 @@ class WeChat extends Base
         );*/
         $notice = $this->$app->notice;
         $result = $notice->uses($templateId)->withUrl($url)->andData($data)->andReceiver($userId)->send();
-        $result = json_decode($result, true);
         return $result;
     }
 
+    //------------------------------------------------------群发消息---------------------------
     /**
      * 群发消息
-     * @param $messageType 发送的消息类型
-     * @param $message 消息内容
-     * @param $operationType 操作方式
-     * @param $targetId 指定组/标签的ID
+     * @param int $messageType 发送的消息类型
+     * @param string $message 消息内容
+     * @param string $operationType 操作方式
+     * @param int $item 不同操作方式传递的数据
      *
      */
-    public function sendMassMessage($messageType, $message, $operationType, $openidArray=[], $targetId=null)
+    public function sendMassMessage($messageType, $message, $operationType, $item=[])
     {
         $broadcast = $this->$app->broadcast;
         switch ($operationType) {
@@ -81,46 +81,67 @@ class WeChat extends Base
                 break;
 
             case 'target':
-                $result = $broadcast->send($messageType, $message, $targetId); // 发给指定组
+                $result = $broadcast->send($messageType, $message, $item); // 发给指定组
                 break;
 
             case 'openid':
-                $result = $broadcast->send($messageType, $message, $openidArray); // 发给指定用户
+                $result = $broadcast->send($messageType, $message, $item); // 发给指定用户
                 break;
 
             case 'preview':
-                $result = $broadcast->send($messageType, $message, $openId); // 发送预览群发消息指定用户openid
+                $result = $broadcast->preview($messageType, $message, $item); // 发送预览群发消息指定用户openid
                 break;
 
             case 'wxname':
-                $result = $broadcast->send($messageType, $message, $wxname); // 发送预览群发消息指定用户wxname
-                break;
-
-            case 'delete':
-                $result = $broadcast->send($messageType, $message, $wxname); // 发送预览群发消息指定用户wxname
-                break;
-
-            case 'status':
-                $result = $broadcast->send($messageType, $message, $wxname); // 发送预览群发消息指定用户wxname
+                $result = $broadcast->previewByName($messageType, $message, $item); // 发送预览群发消息指定用户wxname
                 break;
             
             default:
-                # code...
+                $result = [
+                    'data' => [],
+                    'msg' => '执行方式错误',
+                    'error' => 1
+                ];
                 break;
         }
-        $result = json_decode($result, true);
+        return $result;
+    }
+
+    /**
+     * delete mass message
+     * @param $msgId 群发消息ID
+     *
+     */
+    public function deleteMassMessage($msgId)
+    {
+        $broadcast = $this->$app->broadcast;
+        $result = $broadcast->delete($msgId);
+        return $result;
+    }
+
+    /**
+     * see mass message status
+     * @param $msgId 群发消息ID
+     *
+     */
+    public function deleteMassMessage($msgId)
+    {
+        $broadcast = $this->$app->broadcast;
+        $result = $broadcast->status($msgId);
         return $result;
     }
 
     // -----------------------------------菜单操作-----------------------------------------------
     /**
-     * 添加菜单
+     * add menu
+     * @param array $buttons ordinary menu
+     * @param array $matchRule Individualization menu
      *
      */
-    public function addMenu()
+    public function addMenu($buttons, $matchRule=[])
     {
         $menu = $this->$app->menu;
-        $buttons = [
+        /*$buttons = [
             [
                 "type" => "click",
                 "name" => "今日歌曲",
@@ -176,13 +197,17 @@ class WeChat extends Base
             "city":"广州",
             "client_platform_type":"2",
             "language":"zh_CN"
-        ];
-        $result = $menu->add($buttons, $matchRule);
+        ];*/
+        if (!empty($matchRule)) {
+            $result = $menu->add($buttons, $matchRule);
+        } else {
+            $result = $menu->add($buttons);
+        }
         return $result;
     }
 
     /**
-     * 查看菜单
+     * see menu
      *
      */
     public function seeMenu()
@@ -193,13 +218,43 @@ class WeChat extends Base
     }
 
     /**
-     * 删除菜单
+     * delete menu
+     * @param $menuId menu id
      *
      */
-    public function deleteMenu()
+    public function deleteMenu($menuId=null)
     {
         $menu = $this->$app->menu;
-        $result = $menu->destroy();
+        if ($menuId == null) {
+            $result = $menu->destroy();
+        } else {
+            $result = $menu->destroy($menuId);
+        }
         return $result;
+    }
+
+    //-----------------------------------------获取用户信息------------------------------
+    /**
+     * obtain user info
+     * @param $ipenId
+     *
+     */
+    public function getUserInfo($openID)
+    {
+        $userService = $this->$app->user;
+        $user = $userService->get($openId);
+        return $user;
+    }
+
+    /**
+     * obtain user list
+     * @param $ipenId
+     *
+     */
+    public function getUserInfo($openID)
+    {
+        $userService = $this->$app->user;
+        $users = $userService->lists();
+        return $users;
     }
 }
