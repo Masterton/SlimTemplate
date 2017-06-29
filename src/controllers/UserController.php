@@ -58,7 +58,10 @@ class UserController extends ControllerBase
      */
     public function queryUser(Request $request, Response $response, $args=[])
     {
-
+        $result = [
+            'title' => '流量统计',
+        ];
+        return $this->container->get('twig')->render($response, 'admin/pages/user.twig', $result);
     }
 
     /**

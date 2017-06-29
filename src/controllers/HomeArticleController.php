@@ -27,6 +27,8 @@ class HomeArticleController extends ControllerBase
     public function index(Request $request, Response $response, $args=[])
     {
         $params = [];
+        $url = $request->getUri()->getHost() . $request->getUri()->getPath();
+        AccessController::access($url);
         return $this->container->get('twig')->render($response, 'home/pages/single.twig', $params);
     }
 }

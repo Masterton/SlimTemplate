@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use \App\Models\Access;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 
@@ -21,16 +22,33 @@ class AccessController extends ControllerBase
 {
 
     /**
-     * 访问统计页面展示
-     * @param $.. 参数
-     * @return $result 结果
+     * 新增访问记录
+     * @param $url 访问的页面地址
+     * @param $ip 访问的ip地址
+     * @return boolean
      *
      */
-    public function index(Request $request, Response $response, $args=[])
+    public static function access($url, $ip=null)
     {
-        $result = [
-            'title' => '流量统计',
-        ];
-        return $this->container->get('twig')->render($response, 'admin/pages/index.twig', $result);
+        $access = new Access;
+        $access->url = $url;
+        $access->year = date("Y");
+        $access->month = date("m");
+        $access->day = date("d");
+        $access->hour = date("H");
+        $access->minute = date("i");
+        $access->second = date("s");
+        list($usec, $sec) = explode(" ", microtime());
+        $access->time = $sec;
+        $access->microtime = $usec;
+        $access->accurate_time = $usec + $sec;
+        if ($ip != null) {
+            $access->ip = $ip;
+        }
+        if ($access->save()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

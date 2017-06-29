@@ -82,6 +82,12 @@ class DBMigrationController extends ControllerBase
             case 'access':
                 $obj = new \App\Migrations\Access($table_name, $db->schema());
                 break;
+            case 'account':
+                $obj = new \App\Migrations\Account($table_name, $db->schema());
+                break;
+            case 'user_info':
+                $obj = new \App\Migrations\UserInfo($table_name, $db->schema());
+                break;
             # add <table name> with extra `case` here
             default:
                 if (empty($table_name)) {

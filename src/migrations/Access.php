@@ -35,6 +35,8 @@ class Access extends Base
                 ->comment('访问时间/时间戳');
             $table->bigInteger('microtime')
                 ->comment('访问时间/微秒');
+            $table->bigInteger('accurate_time')
+                ->comment('秒数加微秒数的具体时间');
             $table->string('ip', 64)
                 ->comment('访问ip地址');
             $table->softDeletes();
