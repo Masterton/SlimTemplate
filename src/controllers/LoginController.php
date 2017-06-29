@@ -27,7 +27,7 @@ class LoginController extends ControllerBase
         $result = [
             'title' => '登录界面',
         ];
-        return $this->container->get('twig')->render($response, 'admin/pages/login.twig', $result);
+        return $this->container->get('twig')->render($response, 'admin/pages/page-login.twig', $result);
     }
 
     /**

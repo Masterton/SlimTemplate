@@ -79,6 +79,9 @@ class DBMigrationController extends ControllerBase
             case 'file':
                 $obj = new \App\Migrations\File($table_name, $db->schema());
                 break;
+            case 'access':
+                $obj = new \App\Migrations\Access($table_name, $db->schema());
+                break;
             # add <table name> with extra `case` here
             default:
                 if (empty($table_name)) {
@@ -96,7 +99,7 @@ class DBMigrationController extends ControllerBase
     public function up(Request $request, Response $response, $args = [])
     {
         $table_name = array_get($args, 'table');
-        $db = $this->ci->get('db');
+        $db = $this->container->get('db');
         $obj = $this->get_object($table_name, $db);
         if ($obj instanceof \App\Migrations\Base) {
             if (!$obj->exists()) {
@@ -116,7 +119,7 @@ class DBMigrationController extends ControllerBase
     public function down(Request $request, Response $response, $args = [])
     {
         $table_name = array_get($args, 'table');
-        $db = $this->ci->get('db');
+        $db = $this->container->get('db');
         $obj = $this->get_object($table_name, $db);
         if ($obj instanceof \App\Migrations\Base) {
             if ($obj->exists()) {
