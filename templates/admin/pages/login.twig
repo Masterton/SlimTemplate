@@ -1,0 +1,106 @@
+{% extends "admin/layout.twig" %}
+{% block title %}{{ title }}{% endblock %}
+{% block head_css %}
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="{{ base_url() }}/admin/assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ base_url() }}/admin/assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ base_url() }}/admin/assets/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="{{ base_url() }}/admin/assets/vendor/toastr/toastr.min.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="{{ base_url() }}/admin/assets/css/main.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="{{ base_url() }}/admin/assets/css/demo.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="{{ base_url() }}/admin/assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{ base_url() }}/admin/assets/img/favicon.png">
+{% endblock %}
+{% block content %}
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<div class="logo text-center"><img src="{{ base_url() }}/admin/assets/img/logo-dark.png" alt="Klorofil Logo"></div>
+								<p class="lead">Login to your account</p>
+							</div>
+							<form class="form-auth-small" action="">
+								<div class="form-group">
+									<label for="signin-email" class="control-label sr-only">Email</label>
+									<input type="text" class="form-control" id="username" value="" placeholder="username">
+									<!-- <input type="email" class="form-control" id="signin-email" value="" placeholder="Email"> -->
+								</div>
+								<div class="form-group">
+									<label for="signin-password" class="control-label sr-only">Password</label>
+									<input type="password" class="form-control" id="password" value="" placeholder="Password">
+									<!-- <input type="password" class="form-control" id="signin-password" value="" placeholder="Password"> -->
+								</div>
+								<div class="form-group clearfix">
+									<label class="fancy-checkbox element-left">
+										<input type="checkbox">
+										<span>Remember me</span>
+									</label>
+								</div>
+								<button type="button" class="btn btn-primary btn-lg btn-block" id="login-submit">LOGIN</button>
+								<div class="bottom">
+									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						<div class="overlay"></div>
+						<div class="content text">
+							<h1 class="heading">Free Bootstrap dashboard template</h1>
+							<p>by The Develovers</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<p class="demo-button">
+								<button type="button" class="btn btn-primary btn-toastr" data-context="info" data-message="This is general theme info" data-position="top-right">General Info</button>
+								<button type="button" class="btn btn-success btn-toastr" data-context="success" data-message="This is success info" data-position="top-right">Success Info</button>
+								<button type="button" class="btn btn-warning btn-toastr" data-context="warning" data-message="This is warning info" data-position="top-right">Warning Info</button>
+								<button type="button" class="btn btn-danger btn-toastr" data-context="error" data-message="This is error info" data-position="top-right">Error Info</button>
+							</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END WRAPPER -->
+{% endblock %}
+{% block foot_js %}
+	<!-- Javascript -->
+	<script src="{{ base_url() }}/admin/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="{{ base_url() }}/admin/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="{{ base_url() }}/admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="{{ base_url() }}/admin/assets/vendor/toastr/toastr.min.js"></script>
+	<script src="{{ base_url() }}/admin/assets/scripts/klorofil-common.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#login-submit").click(function(){
+				var data = {
+					username:$("#username").val(),
+					password:$("#password").val()
+				}
+				$.ajax({
+					url: "http://slim.zhengss.com/admin/login",
+					type: 'POST',
+					data: data,
+					dataType: "json",
+					success: function(ret){
+						if (ret.error == 1) {
+							alert(ret.desc);
+						} else if (ret.error == 0) {
+							alert(ret.desc);
+							window.location.href=ret.src;
+						}
+				    }
+		        });
+			});
+		});
+	</script>
+{% endblock %}
