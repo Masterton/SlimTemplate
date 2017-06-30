@@ -105,4 +105,17 @@ class AdminController extends ControllerBase
     {
 
     }
+
+    /**
+     * 密码md5加密
+     * @param string $password 密码
+     * @param string $encryString 字符串
+     */
+    public static function passwordMD5($password, $encryString)
+    {
+        $md5PassOne = md5($password);
+        $md5PassOne = $md5PassOne . $encryString;
+        $md5PassTwo = md5($md5PassOne);
+        return $md5PassTwo;
+    }
 }

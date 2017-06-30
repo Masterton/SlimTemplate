@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \App\Models\User;
+use \App\Models\Admin;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 
@@ -24,10 +25,10 @@ class LoginController extends ControllerBase
      */
     public function index(Request $request, Response $response, $args=[])
     {
-        $result = [
+        $params = [
             'title' => '登录界面',
         ];
-        return $this->container->get('twig')->render($response, 'admin/pages/page-login.twig', $result);
+        return $this->container->get('twig')->render($response, 'admin/pages/login.twig', $params);
     }
 
     /**
@@ -40,13 +41,15 @@ class LoginController extends ControllerBase
     {
         $params = $request->getParams();
         if (!empty($params['username']) && !empty($params['password'])) {
-            $user = User::where('user', $params['username'])->first();
-            if (!empty($user)) {
-                if ($user['password'] == $params['password']) {
-                    $_SESSION['user_info'] = $user;
+            $admin = Admin::where('user', $params['username'])->first();
+            if (!empty($admin)) {
+                $encryString = $this->container->get('settings')->get('encryString');
+                $encryPassword = AdminController::passwordMD5($params['password'], $encryString);
+                if ($admin['password'] == $encryPassword) {
+                    $_SESSION['user_info'] = $admin;
                     $ret = msg([], '登录成功', 0, '/admin/home');
                 } else {
-                    $ret = msg([], '用户名或密码错误', 1);
+                    $ret = msg([], '用户名或密码错误', 2);
                 }
             } else {
                 $ret = msg([], '用户名或密码错误', 1);

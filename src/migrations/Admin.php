@@ -21,7 +21,7 @@ class Admin extends Base
                 ->comment('用户名');
             $table->string('name', 32)
                 ->comment('用户名称');
-            $table->string('psssword', 32)
+            $table->string('password', 32)
                 ->comment('密码');
             $table->tinyInteger('status')
                 ->default(2)

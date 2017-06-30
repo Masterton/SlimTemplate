@@ -65,6 +65,9 @@ return [
         'upload_data_ext' => ['swf'],
         'base_path' => full_path(__DIR__ . '/../../public'),
 
+        // 加密字符串
+        'encryString' => 'slim.zhengss.com',
+
         // wechart
         'wechat'=>[
             'app_id'  => 'wx2292e1ed58c06f1e',// AppID
