@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use \App\Models\Access;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 
@@ -26,18 +27,35 @@ class AdminHomeController extends ControllerBase
         $result = [
             'title' => '后台主页',
         ];
-        return $this->container->get('twig')->render($response, 'admin/pages/index.twig', $result);
+        /*return $this->container->get('twig')->render($response, 'admin/pages/index.twig', $result);*/
         // 判断是否登录
-        /*if (empty($_SESSION['user_info'])) {
-            print_r($_SESSION['user_info']);
-            exit;
+        if (empty($_SESSION['user_info'])) {
             return $response->withRedirect('/admin/login')->withStatus(301);
         } else {
+            $year = date("Y");
+            $month = date("m");
+            $day = date("d");
+            $query = [
+                ['id', '>', 0]
+            ];
+            $access_total = Access::where($query)->count();
+            array_push($query, ['year', '=', $year]);
+            $access_year = Access::where($query)->count();
+            array_push($query, ['month', '=', $month]);
+            $access_month = Access::where($query)->count();
+            array_push($query, ['day', '=', $day]);
+            $access_day = Access::where($query)->count();
             $result = [
                 'title' => '后台主页',
-                'user_info' => $_SESSION['user_info']
+                'user_info' => $_SESSION['user_info'],
+                'access' => [
+                    'access_total' => $access_total, // 总访问量
+                    'access_year' => $access_year, // 年访问量
+                    'access_month' => $access_month, // 月访问量
+                    'access_day' => $access_day, // 日访问量
+                ],
             ];
             return $this->container->get('twig')->render($response, 'admin/pages/index.twig', $result);
-        }*/
+        }
     }
 }

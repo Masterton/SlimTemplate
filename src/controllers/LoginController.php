@@ -41,7 +41,7 @@ class LoginController extends ControllerBase
     {
         $params = $request->getParams();
         if (!empty($params['username']) && !empty($params['password'])) {
-            $admin = Admin::where('user', $params['username'])->first();
+            $admin = Admin::where('user', $params['username'])->first()->toArray();
             if (!empty($admin)) {
                 $encryString = $this->container->get('settings')->get('encryString');
                 $encryPassword = AdminController::passwordMD5($params['password'], $encryString);
