@@ -60,12 +60,7 @@
 						</div>
 					</div>
 					<div class="clearfix"></div>
-					<p class="demo-button">
-								<button type="button" class="btn btn-primary btn-toastr" data-context="info" data-message="This is general theme info" data-position="top-right">General Info</button>
-								<button type="button" class="btn btn-success btn-toastr" data-context="success" data-message="This is success info" data-position="top-right">Success Info</button>
-								<button type="button" class="btn btn-warning btn-toastr" data-context="warning" data-message="This is warning info" data-position="top-right">Warning Info</button>
-								<button type="button" class="btn btn-danger btn-toastr" data-context="error" data-message="This is error info" data-position="top-right">Error Info</button>
-							</p>
+					<button type="button" class="btn btn-default btn-toastr" data-context="info" data-message="账号或密码错误????" data-position="top-center" style="display: none;">提示</button>
 				</div>
 			</div>
 		</div>
@@ -93,13 +88,35 @@
 					dataType: "json",
 					success: function(ret){
 						if (ret.error == 1) {
-							alert(ret.desc);
+							$("button").attr("data-message", ret.desc);
+							$(".btn-toastr").click();
 						} else if (ret.error == 0) {
-							alert(ret.desc);
-							window.location.href=ret.src;
+							$("button").attr("data-message", ret.desc);
+							$(".btn-toastr").click();
+							setTimeout(function () { 
+						        window.location.href=ret.src;
+						    }, 1000);
 						}
 				    }
 		        });
+			});
+			$('.btn-toastr').on('click', function() {
+				$context = $(this).data('context');
+				$message = $(this).data('message');
+				$position = $(this).data('position');
+
+				if($context == '') {
+					$context = 'info';
+				}
+
+				if($position == '') {
+					$positionClass = 'toast-left-top';
+				} else {
+					$positionClass = 'toast-' + $position;
+				}
+
+				toastr.remove();
+				toastr[$context]($message, '' , { positionClass: $positionClass });
 			});
 		});
 	</script>
