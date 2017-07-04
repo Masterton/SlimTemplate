@@ -133,7 +133,7 @@
 									<div class="metric">
 										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
 										<p>
-											<span class="number">203,00</span>
+											<span class="number">{{ access.access_quarter }}</span>
 											<span class="title">季访问量</span>
 										</p>
 									</div>
@@ -163,15 +163,45 @@
 								</div>
 								<div class="col-md-3">
 									<div class="weekly-summary text-right">
-										<span class="number">315</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
+										<span class="number">
+											{{ access.access_contrast_day.total }}
+										</span>
+										<span class="percentage">
+											{% if access.access_contrast_day.type == 'up' %}
+											<i class="fa fa-caret-up text-success"></i>
+											{% elseif ccess.access_contrast_day.type == 'down' %}
+											<i class="fa fa-caret-down text-success"></i>
+											{% endif %}
+											{{ access.access_contrast_day.percentage }}
+											</span>
 										<span class="info-label">日访问量对比</span>
 									</div>
 									<div class="weekly-summary text-right">
-										<span class="number">5,758</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
+										<span class="number">
+											{{ access.access_contrast_week.total }}
+										</span>
+										<span class="percentage">
+											{% if access.access_contrast_week.type == 'up' %}
+											<i class="fa fa-caret-up text-success"></i>
+											{% elseif ccess.access_contrast_week.type == 'down' %}
+											<i class="fa fa-caret-down text-success"></i>
+											{% endif %}
+											{{ access.access_contrast_week.percentage }}
+										</span>
 										<span class="info-label">周访问量对比</span>
 									</div>
 									<div class="weekly-summary text-right">
-										<span class="number">65,938</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
+										<span class="number">
+											{{ access.access_contrast_month.total }}
+										</span>
+										<span class="percentage">
+											{% if access.access_contrast_month.type == 'up' %}
+											<i class="fa fa-caret-up text-success"></i>
+											{% elseif ccess.access_contrast_month.type == 'down' %}
+											<i class="fa fa-caret-down text-success"></i>
+											{% endif %}
+											{{ access.access_contrast_month.percentage }}
+										</span>
 										<span class="info-label">月访问量对比</span>
 									</div>
 								</div>
@@ -492,10 +522,34 @@
 
 			// headline charts
 			data = {
-				labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+				labels: [
+					'{{ access.access_lately.6.week }}',
+					'{{ access.access_lately.5.week }}',
+					'{{ access.access_lately.4.week }}',
+					'{{ access.access_lately.3.week }}',
+					'{{ access.access_lately.2.week }}',
+					'{{ access.access_lately.1.week }}',
+					'{{ access.access_lately.0.week }}'
+				],
 				series: [
-					[23, 29, 24, 40, 25, 24, 35],
-					[14, 25, 18, 34, 29, 38, 44],
+					[
+						{{ access.access_lately.6.total }},
+						{{ access.access_lately.5.total }},
+						{{ access.access_lately.4.total }},
+						{{ access.access_lately.3.total }},
+						{{ access.access_lately.2.total }},
+						{{ access.access_lately.1.total }},
+						{{ access.access_lately.0.total }}
+					],
+					[
+						{{ access.access_lately.13.total }},
+						{{ access.access_lately.12.total }},
+						{{ access.access_lately.11.total }},
+						{{ access.access_lately.10.total }},
+						{{ access.access_lately.9.total }},
+						{{ access.access_lately.8.total }},
+						{{ access.access_lately.7.total }}
+					],
 				]
 			};
 
