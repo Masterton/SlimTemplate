@@ -56,8 +56,31 @@ class AdminController extends ControllerBase
      */
     public function queryAdmin(Request $request, Response $response, $args=[])
     {
-
+        $result = [
+            'title' => '管理员列表',
+        ];
+        return $this->container->get('twig')->render($response, 'admin/pages/admin.twig', $result);
     }
+
+    /**
+     * 添加管理员页面 /admin/add_admin get
+     * @param $id 用户id
+     * @param $.. 其他参数
+     *
+     */
+    public function addAdminIndex(Request $request, Response $response, $args=[])
+    {
+        $result = [
+            'title' => '添加管理员',
+        ];
+        return $this->container->get('twig')->render($response, 'admin/pages/add-admin.twig', $result);
+    }
+
+
+
+
+
+
 
     //-------------------------------------------------------------------------------------------
     // 前后台分离（api接口）

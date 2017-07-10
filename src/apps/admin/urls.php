@@ -70,6 +70,15 @@ return [
             'op_name' => '删除用户',
         ],
     ],
+    '/add_user[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\UserController:addUserIndex",
+            'name'    => 'admin_get_add_user',
+            'auth'    => true,
+            'op_class' => '后台',
+            'op_name' => '添加用户页面',
+        ],
+    ],
     '/user/personal[/[id]]' => [
         'get' => [
             'handler' => "App\Controllers\UserController:queryUser",
@@ -83,7 +92,7 @@ return [
     // 管理员管理
     '/admin[/]' => [
         'get' => [
-            'handler' => "App\Controllers\AdminController:queryUser",
+            'handler' => "App\Controllers\AdminController:queryAdmin",
             'name'    => 'admin_get_admin',
             'auth'    => true,
             'op_class' => '后台',
@@ -109,6 +118,15 @@ return [
             'auth'    => true,
             'op_class' => '后台',
             'op_name' => '删除管理员',
+        ],
+    ],
+    '/add_admin[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\AdminController:addAdminIndex",
+            'name'    => 'admin_get_add_admin',
+            'auth'    => true,
+            'op_class' => '后台',
+            'op_name' => '添加管理员页面',
         ],
     ],
 ];

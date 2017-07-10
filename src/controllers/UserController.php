@@ -59,9 +59,22 @@ class UserController extends ControllerBase
     public function queryUser(Request $request, Response $response, $args=[])
     {
         $result = [
-            'title' => '流量统计',
+            'title' => '普通用户列表',
         ];
         return $this->container->get('twig')->render($response, 'admin/pages/user.twig', $result);
+    }
+
+    /**
+     * 添加用户页面 /admin/add_user get
+     * @param $.. 其他参数
+     *
+     */
+    public function addUserIndex(Request $request, Response $response, $args=[])
+    {
+        $result = [
+            'title' => '添加普通用户',
+        ];
+        return $this->container->get('twig')->render($response, 'admin/pages/add-user.twig', $result);
     }
 
     /**
@@ -74,6 +87,20 @@ class UserController extends ControllerBase
     {
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //-------------------------------------------------------------------------------------------
     // 前后台分离（api接口）

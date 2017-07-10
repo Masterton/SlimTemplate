@@ -70,8 +70,8 @@ class AdminHomeController extends ControllerBase
                 $date = explode('-', $date);
                 $query_date = [
                     ['year', '=', $date[0]],
-                    ['month', '=', str_replace("0","", $date[1])],
-                    ['day', '=', str_replace("0","", $date[2])],
+                    ['month', '=', intval($date[1])],
+                    ['day', '=', intval($date[2])],
                 ];
                 $access_lately[$i]['week'] = $weekArr[$week];
                 $access_lately[$i]['total'] = Access::where($query_date)->count();
