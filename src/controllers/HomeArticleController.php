@@ -27,7 +27,7 @@ class HomeArticleController extends ControllerBase
     public function index(Request $request, Response $response, $args=[])
     {
         $params = [
-            'title' => 'Ping Blog文章'
+            'title' => 'How to be an effective web developer'
         ];
         $url = $request->getUri()->getHost() . $request->getUri()->getPath();
         AccessController::access($url);

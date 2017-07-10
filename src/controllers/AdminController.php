@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use \App\Models\Admin;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 
@@ -56,8 +57,12 @@ class AdminController extends ControllerBase
      */
     public function queryAdmin(Request $request, Response $response, $args=[])
     {
+        $params = $request->getParams();
+        $page = 1;
+        $data = Admin::where('id', '>', 0)->orderBy('id', 'asc')->get();//paginate(20, null, 'page', $page);
         $result = [
             'title' => '管理员列表',
+            'admin_info' => $data,
         ];
         return $this->container->get('twig')->render($response, 'admin/pages/admin.twig', $result);
     }
