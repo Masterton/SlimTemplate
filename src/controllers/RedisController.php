@@ -27,8 +27,8 @@ class RedisController extends ControllerBase
     {
         $redis = new \Redis();
         $redis->connect('localhost', 6379);
-        echo "Connection to server sucessfully";
+        $redis->set('ucode', 'A1234567890');
         //查看服务是否运行
-        echo "Server is running: " . $redis->ping();
+        echo $redis->get('ucode');
     }
 }
