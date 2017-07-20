@@ -373,4 +373,36 @@ return [
             'op_name' => '删除微信消息',
         ],
     ],
+
+    // 消息队列
+    '/redis[/]' => [
+        'get' => [
+            'handler' => "App\Controllers\RedisController:registerRedis",
+            'name'    => 'api_get_redis',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '消息队列',
+        ],
+        'post' => [
+            'handler' => "App\Controllers\RedisController:registerRedis",
+            'name'    => 'api_post_redis',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '消息队列',
+        ],
+        'put' => [
+            'handler' => "App\Controllers\RedisController:registerRedis",
+            'name'    => 'api_put_redis',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '消息队列',
+        ],
+        'delete' => [
+            'handler' => "App\Controllers\RedisController:registerRedis",
+            'name'    => 'api_delete_redis',
+            'auth'    => true,
+            'op_class' => 'api接口',
+            'op_name' => '消息队列',
+        ],
+    ],
 ];
