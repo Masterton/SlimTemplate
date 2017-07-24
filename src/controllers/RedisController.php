@@ -25,10 +25,17 @@ class RedisController extends ControllerBase
      */
     public function registerRedis(Request $request, Response $response, $args=[])
     {
+        $count = 100;
         $redis = new \Redis();
         $redis->connect('localhost', 6379);
-        $redis->set('ucode', 'A1234567890');
-        //查看服务是否运行
-        echo $redis->get('ucode');
+        if ($redis->llen('ucode') < $count) {
+            $redis->lpush('ucode', time());
+            print_r($redis->llen('ucode'));
+        } else {
+            print_r("商品已被抢完");
+            print_r($redis->llen('ucode'));
+            print_r("<pre>");
+            print_r($redis->lrange('ucode'));
+        }
     }
 }
