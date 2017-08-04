@@ -30,4 +30,20 @@ class HomeController extends ControllerBase
         AccessController::access($url);
         return $this->container->get('twig')->render($response, 'home/pages/index.twig', $params);
     }
+
+    /**
+     * 授权登录页面
+     * @param $data 参数
+     * @return $result 结果
+     *
+     */
+    public function Authorization(Request $request, Response $response, $args=[])
+    {
+        $params = [
+            'title' => '授权登录页面'
+        ];
+        $url = $request->getUri()->getHost() . $request->getUri()->getPath();
+        AccessController::access($url);
+        return $this->container->get('twig')->render($response, 'home/pages/login.twig', $params);
+    }
 }
