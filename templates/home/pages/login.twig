@@ -1,5 +1,5 @@
 {% extends "home/layout.twig" %}
-{% block title %}这是登录界面{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block head_css %}
 	{{ parent() }}
 	<link rel="stylesheet" type="text/css" href="{{ base_url() }}/lib/jquery-file-upload/css/jquery.fileupload.css">
@@ -27,55 +27,6 @@
 {% endblock %}
 {% block content %}
 	<div>
-		用户名：<input type="text" name="name"><br />
-		密码：<input type="password" name="password"><br />
-		<input type="submit" name="submit">
+		<a href="https://api.weibo.com/oauth2/authorize?client_id=2752402689&response_type=code&redirect_uri=http://slim.zhengss.com/login/weibo">微博登录</a>
 	</div>
-{% endblock %}
-{% block foot_js %}
-	{{ parent() }}
-	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
-	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
-	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/jquery.iframe-transport.js"></script>
-	<script type="text/javascript" src="{{ base_url() }}/lib/jquery-file-upload/js/jquery.fileupload.js"></script>
-	<script type="text/javascript">
-		    /*$('#fileupload').fileupload({
-		        dataType: 'json',
-		        done: function (e, data) {
-		            $.each(data.result.files, function (index, file) {
-		                $('<p/>').text(file.name).appendTo(document.body);
-		            });
-		        },
-		        progressall: function (e, data) {
-			        var progress = parseInt(data.loaded / data.total * 100, 10);
-			        var bb = progress + '%';
-			        $("#finish").css({"width":bb});
-			        $("#finish").text(bb);
-			        if (progress == 100) {
-			        	alert('上传完毕！！！');
-			        }
-			    }
-		    });*/
-	    	$('#fileupload').fileupload({
-		        url: 'http://slim.zhengss.com/api/upload',
-			    sequentialUploads: true,
-			    dataType: 'json',
-			    done: function (e, data) {
-		            $.each(data.result.files, function (index, file) {
-		                $('<p/>').text(file.name).appendTo(document.body);
-		            });
-		        },
-		        progressall: function (e, data) {
-		        	console.log(data);
-			        var progress = parseInt(data.loaded / data.total * 100, 10);
-			        var bb = progress + '%';
-			        $("#finish").css({"width":bb});
-			        $("#finish").text(bb);
-			        if (progress == 100) {
-			        	alert('上传完毕！！！');
-			        }
-			    }
-		    });
-	</script>
-	
 {% endblock %}
