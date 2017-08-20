@@ -68,7 +68,14 @@ class LoginController extends ControllerBase
      */
     public function logout(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        unset($_SESSION['user_info']);
+        if (empty($_SESSION['user_info'])) {
+            $ret = msg([], '退出成功', 0, '/admin/login');
+        } else {
+            $ret = msg([], '退出失败', 1);
+        }
+        return $response->withJson($ret);
     }
 
     // token验证方式的登录

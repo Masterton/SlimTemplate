@@ -695,4 +695,47 @@
 
 		});
 	</script>
+	<script type="text/javascript">
+		$(function() {
+			$("#logout").click(function(){
+				var data = {}
+				$.ajax({
+					url: "http://slim.zhengss.com/admin/logout",
+					type: 'POST',
+					data: data,
+					dataType: "json",
+					success: function(ret){
+						if (ret.error == 1) {
+							$("button").attr("data-message", ret.desc);
+							$(".btn-toastr").click();
+						} else if (ret.error == 0) {
+							$("button").attr("data-message", ret.desc);
+							$(".btn-toastr").click();
+							setTimeout(function () { 
+						        window.location.href=ret.src;
+						    }, 1000);
+						}
+				    }
+		        });
+			});
+			$('.btn-toastr').on('click', function() {
+				$context = $(this).data('context');
+				$message = $(this).data('message');
+				$position = $(this).data('position');
+
+				if($context == '') {
+					$context = 'info';
+				}
+
+				if($position == '') {
+					$positionClass = 'toast-left-top';
+				} else {
+					$positionClass = 'toast-' + $position;
+				}
+
+				toastr.remove();
+				toastr[$context]($message, '' , { positionClass: $positionClass });
+			});
+		});
+	</script>
 {% endblock %}

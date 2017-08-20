@@ -31,7 +31,7 @@ return [
     ],
     '/logout[/]' => [
         'post' => [
-            'handler' => 'App\Controllers\LogoutController:logout',
+            'handler' => 'App\Controllers\LoginController:logout',
             'name' => 'admin_post_logout',
             'auth' => false,
             'op_class' => '后台',
