@@ -25,7 +25,13 @@ class UserController extends ControllerBase
      */
     public function addUser(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -36,7 +42,13 @@ class UserController extends ControllerBase
      */
     public function modifyUser(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -47,7 +59,13 @@ class UserController extends ControllerBase
      */
     public function deleteUser(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -85,7 +103,13 @@ class UserController extends ControllerBase
      */
     public function queryUserPersonal(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
 
@@ -113,7 +137,13 @@ class UserController extends ControllerBase
      */
     public function addUserAPI(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -124,7 +154,13 @@ class UserController extends ControllerBase
      */
     public function modifyUserAPI(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -135,7 +171,13 @@ class UserController extends ControllerBase
      */
     public function deleteUserAPI(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -146,7 +188,13 @@ class UserController extends ControllerBase
      */
     public function queryUserAPI(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -157,6 +205,12 @@ class UserController extends ControllerBase
      */
     public function queryUserPersonalAPI(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 }

@@ -66,7 +66,13 @@ class ThirdPartyController extends ControllerBase
      */
     public function wechatAuthor(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 
     /**
@@ -77,6 +83,12 @@ class ThirdPartyController extends ControllerBase
      */
     public function qqAuthor(Request $request, Response $response, $args=[])
     {
-
+        $params = $request->getParams();
+        if (!empty($params)) {
+            // TODO
+        } else {
+            $ret = msg([], '参数错误', 1);
+        }
+        return $response->withJson($ret);
     }
 }
